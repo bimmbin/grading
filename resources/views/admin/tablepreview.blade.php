@@ -7,7 +7,6 @@
 
         <h1 class="text-blacky font-semibold" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);">Excel file
             info</h1>
-        <h1 class="text-red-700 font-md ">Found: {{ count($exusers) }} Existing Students</h1>
     </div>
 
     <form action="{{ route('registerStudent') }}" method="post" class="relative">
@@ -37,11 +36,7 @@
                     @php $headings = 0; @endphp
                     @foreach ($students->rows() as $student)
                         @if ($headings != 0 && $headings != 1)
-                            <tr class="border bg-tablebg 
-                            
-                            @if(in_array($student[2].$student[0], $exusers)) bg-red-300
-                                
-                            @endif  ">
+                            <tr class="border bg-tablebg">
                                 <td class="py-2 text-center">
                                     {{ $loop->iteration - 2 }}
                                 </td>

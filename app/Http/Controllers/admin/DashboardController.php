@@ -44,7 +44,6 @@ class DashboardController extends Controller
         }
 
 
-        return view('admin.tablepreview')->with('students', $students)
-                                        ->with('exusers', $exusers);
+        return view('admin.tablepreview')->with('students', $students);
     }
 }
