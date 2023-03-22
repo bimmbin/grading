@@ -12,27 +12,13 @@ class RegisterStudentController extends Controller
 {
     public function registerStudent(Request $request)
     {
-        // $param1 = [];
-        // $param2 = [];
-        $exStudents = [];
-        $studentsprofile = [];
+
+
+        $ran = [];
 
         foreach ($request->studentno as $i => $studentnumber) {
 
-            $ran = microtime() . floor(rand() * 10000);
-
-            $user = User::firstOrNew(['username' => $request->lastname[$i] . $studentnumber], [
-                'password' => Hash::make($studentnumber),
-                'role' => 'student',
-                'identify' => $ran,
-            ]);
-            
-            
-            if (!$user->exists) {
-                $user->save();
-            }
-
-            $userprofile = Profile::firstOrNew(['user_id' => $user->id,], [
+            $ran[] = [
                 'studentno' => $studentnumber,
                 'firstname' => $request->firstname[$i],
                 'lastname' => $request->lastname[$i],
@@ -41,13 +27,61 @@ class RegisterStudentController extends Controller
                 'year' => $request->year[$i],
                 'course' => $request->course[$i],
                 'section' => $request->section[$i],
+            ];
+        }
+
+
+        $filtered = collect($ran)
+            ->filter(function ($ran) {
+                return $ran['course'] == 'BSCS';
+            })
+            ->map(function ($ran) {
+                return [
+                    'studentno' => $ran['studentno'],
+                    'firstname' => $ran['firstname'],
+                    'lastname' => $ran['lastname'],
+                    'middlename' => $ran['middlename'],
+                    'sex' => $ran['sex'],
+                    'year' => $ran['year'],
+                    'course' => $ran['course'],
+                    'section' => $ran['section'],
+                ];
+            });
+
+        // dd($filtered);
+
+        $filtered->each(function ($data) {
+
+
+            $user = User::firstOrNew(['username' => $data['firstname'] . $data['studentno']], [
+                'password' => Hash::make($data['studentno']),
+                'role' => 'student',
+            ]);
+
+
+            if (!$user->exists) {
+                $user->save();
+            }
+
+            $userprofile = Profile::firstOrNew(['user_id' => $user->id], [
+                'studentno' => $data['studentno'],
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+                'middlename' =>$data['middlename'],
+                'sex' => $data['sex'],
+                'year' => $data['year'],
+                'course' => $data['course'],
+                'section' => $data['section'],
             ]);
 
             if (!$userprofile->exists) {
                 $userprofile->save();
             }
-            
-        }
+        });
+
+
+        // dd($data['studentno']);
+
 
         return redirect()->route('dashboard');
     }
