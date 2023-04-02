@@ -83,6 +83,6 @@ class RegisterStudentController extends Controller
         // dd($data['studentno']);
 
 
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.studentlist');
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\LogoutController;
+use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\RegisterStudentController;
@@ -19,7 +20,7 @@ use App\Http\Controllers\admin\RegisterStudentController;
 */
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return view('auth.login');
 });
 
 
@@ -36,11 +37,14 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 //Admin
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::get('/sample', [DashboardController::class, 'sample'])->name('sample');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-Route::post('/previewTable', [DashboardController::class, 'previewTable'])->name('previewTable');
+    //excel table preview
+    Route::post('/previewTable', [DashboardController::class, 'previewTable'])->name('previewTable');
+    Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name('registerStudent');
 
+    //student list
+    Route::get('/admin/studentlist', [StudentController::class, 'index'])->name('admin.studentlist');
 
-Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name('registerStudent');
-
+});

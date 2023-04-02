@@ -40,30 +40,30 @@
                                 <td class="py-2 text-center">
                                     {{ $loop->iteration - 2 }}
                                 </td>
-                                
+
                                 <td class="pl-5">{{ $student[0] }} <input type="hidden" name="studentno[]"
                                         value="{{ $student[0] }}"></td>
 
-                                <td class="pl-5">{{ $student[1] }} <input type="hidden" name="firstname[]"
+                                <td class="pl-5">{{ $student[1] }} <input type="hidden" name="lastname[]"
                                         value="{{ $student[1] }}"></td>
 
-                                <td class="pl-5">{{ $student[2] }} <input type="hidden" name="lastname[]"
+                                <td class="pl-5">{{ $student[2] }} <input type="hidden" name="firstname[]"
                                         value="{{ $student[2] }}"></td>
 
                                 <td class="pl-5">{{ $student[3] }} <input type="hidden" name="middlename[]"
                                         value="{{ $student[3] }}"></td>
 
-                                <td class="pl-5">{{ $student[4] }} <input type="hidden" name="sex[]"
-                                        value="{{ $student[4] }}"></td>
-
-                                <td class="pl-5">{{ $student[5] }} <input type="hidden" name="year[]"
+                                <td class="pl-5">{{ $student[5] }} <input type="hidden" name="sex[]"
                                         value="{{ $student[5] }}"></td>
 
-                                <td class="pl-5">{{ $student[6] }} <input type="hidden" name="course[]"
-                                        value="{{ $student[6] }}"></td>
+                                <td class="pl-5">{{ substr($student[10], 0, 1) }} <input type="hidden" name="year[]"
+                                        value="{{ substr($student[10], 0, 1) }}"></td>
 
-                                <td class="pl-5">{{ $student[7] }} <input type="hidden" name="section[]"
-                                        value="{{ $student[7] }}"></td>
+                                <td class="pl-5">{{ $student[8] }} <input type="hidden" name="course[]"
+                                        value="{{ $student[8] }}"></td>
+
+                                <td class="pl-5">{{ $student[10] }} <input type="hidden" name="section[]"
+                                        value="{{ $student[10] }}"></td>
 
                             </tr>
                         @endif
