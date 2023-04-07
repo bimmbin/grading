@@ -20,7 +20,7 @@ class Profile extends Model
         'year',
         'course',
         'section',
-        'department_id',
+        'department',
     ];
 
     public function user() {

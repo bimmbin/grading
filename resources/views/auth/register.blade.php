@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="w-full flex flex-col items-center">
-    <div class="w-4/12 max-lg:w-6/12 max-sm:w-11/12 bg-white p-6 rounded-lg">
+    <div class="w-4/12 max-lg:w-6/12 max-sm:w-11/12 bg-blu p-6 rounded-lg">
         <form action="" method="post">
             @csrf
             <div class="mb-4">
@@ -44,7 +44,7 @@
 
             </div>
             <input type="hidden" name="role" id="role" value="admin">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Register</button>
+            <button type="submit" class="bg-white text-black px-4 py-3 rounded font-medium w-full">Register</button>
         </form>
     </div>
 </div>

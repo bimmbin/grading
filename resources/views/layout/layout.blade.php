@@ -140,7 +140,7 @@
                     <li
                         class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                         <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png" alt="" />
-                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Faculty List</a>
+                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('admin.faculty') }}">Faculty List</a>
                     </li>
 
                     <li
@@ -153,7 +153,7 @@
                     <li
                         class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                         <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png" alt="" />
-                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="subject-and-section.html">Subject
+                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('admin.subject') }}">Subject
                             & Section</a>
                     </li>
 
@@ -214,7 +214,7 @@
                                 class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
                                 <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                     alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Faculty
+                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('admin.faculty') }}">Faculty
                                     List</a>
                             </li>
 
@@ -223,7 +223,7 @@
                                 <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                     alt="" />
                                 <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                    href="subject-and-section.html">Subject & Section</a>
+                                    href="{{ route('admin.subject') }}">Subject & Section</a>
                             </li>
 
                             <li

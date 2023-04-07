@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('middlename')->nullable();
-            $table->string('sex');
+            $table->string('sex')->nullable();
             $table->string('year')->nullable();
             $table->string('course')->nullable();
             $table->string('section')->nullable();
-            $table->string('department_id')->nullable();
+            $table->text('department')->nullable();
             $table->timestamps();
         });
     }

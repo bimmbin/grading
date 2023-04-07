@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="w-full flex flex-col items-center">
-        <div class="w-4/12 max-lg:w-6/12 max-sm:w-11/12 bg-white p-6 rounded-lg">
+        <div class="w-4/12 max-lg:w-6/12 max-sm:w-11/12 bg-blu p-6 rounded-lg">
 
             @if (session('status'))
                 <div class="bg-red-500 p-4 rounded-lg mb-6 text-white text-center">
@@ -19,7 +19,7 @@
 
                 <div class="mb-4">
                     <label for="username" class="sr-only">Email</label>
-                    <input type="text" name="username" id="email" placeholder="Your username"
+                    <input type="text" name="username" id="email" placeholder="Username"
                         class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('username') border-red-500 @enderror"
                         value="{{ old('email') }}">
 
@@ -46,7 +46,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">login</button>
+                <button type="submit" class="bg-white text-black px-4 py-3 rounded font-medium w-full">login</button>
             </form>
         </div>
     </div>
