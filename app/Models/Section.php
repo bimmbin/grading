@@ -18,4 +18,7 @@ class Section extends Model
     public function loading() {
         return $this->hasOne(Loading::class);
     }
+    public function profile() {
+        return $this->hasOne(Profile::class);
+    }
 }

@@ -11,6 +11,7 @@ class Profile extends Model
 
     protected $fillable = [
         'user_id',
+        'section_id',
         'studentno',
         'employeeno',
         'firstname',
@@ -19,12 +20,14 @@ class Profile extends Model
         'sex',
         'year',
         'course',
-        'section',
         'department',
     ];
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function section() {
+        return $this->belongsTo(Section::class);
     }
     public function loading() {
         return $this->hasOne(Loading::class);

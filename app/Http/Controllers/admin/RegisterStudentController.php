@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -13,6 +14,15 @@ class RegisterStudentController extends Controller
     public function registerStudent(Request $request)
     {
 
+        $sections = Section::all();
+
+        $secsyon = [];
+        foreach ($sections as $section) {
+            $secsyon[] = [
+                'section_id' => $section->id,
+                'section_name' => $section->section_name,
+            ];
+        }
 
         $ran = [];
 
@@ -30,6 +40,9 @@ class RegisterStudentController extends Controller
             ];
         }
 
+        
+
+        // dd($secsyon);
 
         $filtered = collect($ran)
             ->filter(function ($ran) {
@@ -63,6 +76,9 @@ class RegisterStudentController extends Controller
                 $user->save();
             }
 
+            $section = Section::select('id')->where('section_name', $data['section'])->first();
+
+            // dd($section->id);
             $userprofile = Profile::firstOrNew(['user_id' => $user->id], [
                 'studentno' => $data['studentno'],
                 'firstname' => $data['firstname'],
@@ -71,7 +87,7 @@ class RegisterStudentController extends Controller
                 'sex' => $data['sex'],
                 'year' => $data['year'],
                 'course' => $data['course'],
-                'section' => $data['section'],
+                'section_id' => $section->id,
             ]);
 
             if (!$userprofile->exists) {

@@ -92,7 +92,7 @@
                         <td class="">{{ $student->sex }}</td>
                         <td class="">{{ $student->year }}</td>
                         <td class="">{{ $student->course }}</td>
-                        <td class="">{{ $student->section }}</td>
+                        <td class="">{{ $student->section->section_name }}</td>
                     </tr>
                 @endforeach
             </tbody>

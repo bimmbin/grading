@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->integer('section_id')->nullable();
             $table->string('studentno')->nullable();
             $table->string('employeeno')->nullable();
             $table->string('firstname');
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->string('sex')->nullable();
             $table->string('year')->nullable();
             $table->string('course')->nullable();
-            $table->string('section')->nullable();
+    
             $table->text('department')->nullable();
             $table->timestamps();
         });
