@@ -14,4 +14,8 @@ class Section extends Model
         'course_year',
      
     ];
+
+    public function loading() {
+        return $this->hasOne(Loading::class);
+    }
 }

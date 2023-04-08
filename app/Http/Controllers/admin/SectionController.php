@@ -19,10 +19,14 @@ class SectionController extends Controller
 
         $data = [];
 
+        $iterate = 0;
         foreach ($students->rows() as $student) {
-            $data[] = [
-                'section' => $student[10],
-            ];
+            if ($iterate != 0) {
+                $data[] = [
+                    'section' => $student[10],
+                ];
+            }
+            $iterate++;
         }
         // dd($data);
         $filtered = collect($data)

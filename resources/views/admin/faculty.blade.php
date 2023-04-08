@@ -66,6 +66,7 @@
                     <th class="pt-8 pb-8">First Name</th>
                     <th class="pt-8 pb-8">M.I</th>
                     <th class="pt-8 pb-8">Department</th>
+                    <th class="pt-8 pb-8">Action</th>
                 </tr>
             </thead>
 
@@ -77,6 +78,9 @@
                         <td class="pb-4 pt-2">{{ $faculty->firstname }}</td>
                         <td class="pb-4 pt-2">{{ $faculty->middlename }}</td>
                         <td class="pb-4 pt-2">{{ $faculty->department }}</td>
+                        <td class="pb-4 pt-2">
+                            <a class="text-blu" href="{{ route('admin.faculty.loads', $faculty->id) }}">View loads</a>
+                        </td>
                     </tr>
                 @endforeach
 

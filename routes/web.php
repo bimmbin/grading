@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\admin\LoadsController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\admin\FacultyController;
 use App\Http\Controllers\admin\SectionController;
@@ -64,5 +65,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //faculty
     Route::get('/admin/faculty', [FacultyController::class, 'index'])->name('admin.faculty');
     Route::post('/admin/create-faculty', [FacultyController::class, 'store'])->name('admin.createfaculty');
-
+    //laods
+    Route::get('/admin/faculty/loads/{id}', [LoadsController::class, 'index'])->name('admin.faculty.loads');
+    Route::post('/admin/faculty/loads/assign', [LoadsController::class, 'store'])->name('admin.faculty.assignloads');
+   
 });

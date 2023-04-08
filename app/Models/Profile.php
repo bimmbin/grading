@@ -26,4 +26,8 @@ class Profile extends Model
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function loading() {
+        return $this->hasOne(Loading::class);
+    }
+
 }

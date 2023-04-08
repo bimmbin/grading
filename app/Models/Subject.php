@@ -15,4 +15,8 @@ class Subject extends Model
         'subject_description',
      
     ];
+    
+    public function loading() {
+        return $this->hasOne(Loading::class);
+    }
 }
