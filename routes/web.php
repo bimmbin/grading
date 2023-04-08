@@ -23,13 +23,12 @@ use App\Http\Controllers\admin\RegisterStudentController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->name('home');
 
 
 //Register
 Route::middleware(['guest'])->group(function () {
+
+Route::get('/', [LoginController::class, 'index'])->name('home');
 
 //register admin
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -43,10 +42,11 @@ Route::post('/login', [LoginController::class, 'store']);
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 //Admin
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-
+   
     //excel table preview
     Route::post('/previewTable', [DashboardController::class, 'previewTable'])->name('previewTable');
     Route::post('/reg', [RegisterStudentController::class, 'registerStudent'])->name('registerStudent');
@@ -70,3 +70,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/faculty/loads/assign', [LoadsController::class, 'store'])->name('admin.faculty.assignloads');
    
 });
+
+// Route::middleware(['auth', 'admin'])->group(function () {
+    
+// });

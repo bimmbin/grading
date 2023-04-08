@@ -126,7 +126,7 @@
         @auth
             <div class="bg-darkblue flex flex-col items-center relative w-[400px] bg-white h-auto max-md:hidden">
 
-                <a href="{{ route('admin.dashboard') }}" class="flex-col flex items-center my-[30px]">
+                <a href="{{ route('dashboard') }}" class="flex-col flex items-center my-[30px]">
                     <img class="w-[89px]" src="/asset/chcc-vector-logo.png" alt="logo" />
                     <h1 class="text-[20px] text-center text-blu font-medium mt-2 max-lg:text-[18px]">
                         Concepcion Holy Cross
@@ -136,34 +136,94 @@
                 </a>
 
                 <ul class="flex flex-col items-center my-12">
-                    
-                    <li
-                        class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
-                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png" alt="" />
-                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('admin.faculty') }}">Faculty List</a>
-                    </li>
 
-                    <li
-                        class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
-                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png" alt="" />
-                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                            href="{{ route('admin.studentlist') }}">Student List</a>
-                    </li>
+                    @if (Auth::user()->role === 'admin')
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                href="{{ route('admin.faculty') }}">Faculty List</a>
+                        </li>
 
-                    <li
-                        class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
-                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png" alt="" />
-                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('admin.subject') }}">Subject
-                            & Section</a>
-                    </li>
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                href="{{ route('admin.studentlist') }}">Student List</a>
+                        </li>
 
-                    <li
-                        class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
-                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png" alt="" />
-                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="grades.html">Grades</a>
-                    </li>
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                href="{{ route('admin.subject') }}">Subject
+                                & Section</a>
+                        </li>
 
-                    <li
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="grades.html">Grades</a>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->role === 'student')
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="grades.html">Grades</a>
+                        </li>
+
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-setting.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Settings</a>
+                        </li>
+
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-about.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">About</a>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->role === 'faculty')
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="loads.html">Loads</a>
+                        </li>
+
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="grades.html">Grades</a>
+                        </li>
+
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-setting.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Settings</a>
+                        </li>
+
+                        <li
+                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
+                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-about.png"
+                                alt="" />
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">About</a>
+                        </li>
+                    @endif
+                    {{-- <li
                         class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                         <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-setting.png" alt="" />
                         <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Settings</a>
@@ -173,7 +233,7 @@
                         class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                         <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-about.png" alt="" />
                         <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">About</a>
-                    </li>
+                    </li> --}}
                 </ul>
 
                 <!-- <button class="bg-blu text-white text-[18px] font-medium w-[167px] h-[50px] rounded-lg cursor-pointer absolute bottom-0 hover:bg-red-400">Log out</button> -->
@@ -199,7 +259,8 @@
                                 class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14">
                                 <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                     alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Schedule</a>
+                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                    href="#">Schedule</a>
                             </li>
 
                             <li
@@ -214,7 +275,8 @@
                                 class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
                                 <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                     alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('admin.faculty') }}">Faculty
+                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                    href="{{ route('admin.faculty') }}">Faculty
                                     List</a>
                             </li>
 
