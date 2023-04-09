@@ -17,7 +17,7 @@ class ProfMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role !== 'prof') {
+        if (Auth::user()->role !== 'faculty') {
             return redirect()->route('home')->with('status', 'Need to be a professor to access the route');
         }
         return $next($request);

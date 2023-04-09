@@ -10,6 +10,8 @@ use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\admin\SubjectController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\faculty\FacultyGradeController;
+use App\Http\Controllers\faculty\FacultyLoadsController;
 use App\Http\Controllers\admin\RegisterStudentController;
 
 /*
@@ -71,6 +73,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
    
 });
 
-// Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'faculty'])->group(function () {
+
+    //create section
+    Route::get('/faculty/loads', [FacultyLoadsController::class, 'index'])->name('faculty.loads');
     
-// });
+    //grade
+    Route::post('/admin/generate-grade', [FacultyGradeController::class, 'store'])->name('faculty.generategrade');
+
+});
