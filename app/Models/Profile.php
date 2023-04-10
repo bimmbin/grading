@@ -30,7 +30,9 @@ class Profile extends Model
         return $this->belongsTo(Section::class);
     }
     public function loading() {
-        return $this->hasOne(Loading::class);
+        return $this->hasMany(Loading::class);
     }
-
+    public function grade() {
+        return $this->hasMany(Grade::class);
+    }
 }

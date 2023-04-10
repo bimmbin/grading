@@ -21,8 +21,8 @@
                     <tr class="space-y-3 pl-5">
                         <th class="pl-5">Number</th>
                         <th class="text-left pl-5">Student No.</th>
-                        <th class="text-left pl-5">First Name</th>
                         <th class="text-left pl-5">Last Name</th>
+                        <th class="text-left pl-5">First Name</th>
                         <th class="text-left pl-5">Middle Name</th>
                         <th class="text-left pl-5">Sex</th>
                         <th class="text-left pl-5">Year</th>

@@ -176,7 +176,7 @@
                             class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                             <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
                                 alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="grades.html">Grades</a>
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('student.grade') }}">Grades</a>
                         </li>
 
                         <li

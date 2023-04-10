@@ -14,21 +14,11 @@ class RegisterStudentController extends Controller
     public function registerStudent(Request $request)
     {
 
-        $sections = Section::all();
-
-        $secsyon = [];
-        foreach ($sections as $section) {
-            $secsyon[] = [
-                'section_id' => $section->id,
-                'section_name' => $section->section_name,
-            ];
-        }
-
-        $ran = [];
+        $datas = [];
 
         foreach ($request->studentno as $i => $studentnumber) {
 
-            $ran[] = [
+            $datas[] = [
                 'studentno' => $studentnumber,
                 'firstname' => $request->firstname[$i],
                 'lastname' => $request->lastname[$i],
@@ -42,31 +32,30 @@ class RegisterStudentController extends Controller
 
         
 
-        // dd($secsyon);
+        // dd($ran);
 
-        $filtered = collect($ran)
-            ->filter(function ($ran) {
-                return $ran['course'] == 'BSCS';
-            })
-            ->map(function ($ran) {
-                return [
-                    'studentno' => $ran['studentno'],
-                    'firstname' => $ran['firstname'],
-                    'lastname' => $ran['lastname'],
-                    'middlename' => $ran['middlename'],
-                    'sex' => $ran['sex'],
-                    'year' => $ran['year'],
-                    'course' => $ran['course'],
-                    'section' => $ran['section'],
-                ];
-            });
+        // $filtered = collect($ran)
+        //     ->filter(function ($ran) {
+        //         return $ran['course'] == 'BSCS';
+        //     })
+        //     ->map(function ($ran) {
+        //         return [
+        //             'studentno' => $ran['studentno'],
+        //             'firstname' => $ran['firstname'],
+        //             'lastname' => $ran['lastname'],
+        //             'middlename' => $ran['middlename'],
+        //             'sex' => $ran['sex'],
+        //             'year' => $ran['year'],
+        //             'course' => $ran['course'],
+        //             'section' => $ran['section'],
+        //         ];
+        //     });
 
         // dd($filtered);
 
-        $filtered->each(function ($data) {
-
-
-            $user = User::firstOrNew(['username' => $data['firstname'] . $data['studentno']], [
+        foreach ($datas as $data) {
+  
+            $user = User::firstOrNew(['username' => $data['lastname'] . $data['studentno']], [
                 'password' => Hash::make($data['studentno']),
                 'role' => 'student',
             ]);
@@ -93,7 +82,7 @@ class RegisterStudentController extends Controller
             if (!$userprofile->exists) {
                 $userprofile->save();
             }
-        });
+        };
 
 
         // dd($data['studentno']);

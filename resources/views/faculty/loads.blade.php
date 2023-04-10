@@ -28,11 +28,11 @@
     </form> --}}
 
         <div id="report-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75 hidden">
-            <form action="{{ route('faculty.generategrade') }}" method="post"
+            <form action="{{ route('faculty.generategrade') }}" method="post"  enctype="multipart/form-data"
                 class="bg-white rounded-lg px-5 py-8 w-full h-fit flex flex-col sm:flex-row sm:items-center sm:w-fit">
                 @csrf
-                <input class="text-black mb-3 sm:mb-0" type="file" />
-                <input type="hidden" id="load-id" name="id">
+                <input class="text-black mb-3 sm:mb-0" type="file" name="file" />
+                <input type="hidden" id="load-id" name="loading_id">
                 <button class="bg-blu text-sm px-4 py-2 rounded text-white hover:opacity-70">
                     Upload
                 </button>

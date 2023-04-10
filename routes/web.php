@@ -12,6 +12,7 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\faculty\FacultyGradeController;
 use App\Http\Controllers\faculty\FacultyLoadsController;
+use App\Http\Controllers\student\StudentGradeController;
 use App\Http\Controllers\admin\RegisterStudentController;
 
 /*
@@ -80,5 +81,14 @@ Route::middleware(['auth', 'faculty'])->group(function () {
     
     //grade
     Route::post('/admin/generate-grade', [FacultyGradeController::class, 'store'])->name('faculty.generategrade');
+
+});
+
+
+Route::middleware(['auth', 'student'])->group(function () {
+
+    //grade
+    Route::get('/student/grades', [StudentGradeController::class, 'index'])->name('student.grade');
+    
 
 });

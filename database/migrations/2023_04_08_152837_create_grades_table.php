@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->integer('loading_id');
-            $table->integer('school_year_id');
+            $table->integer('profile_id');
+            // $table->integer('school_year_id');
             $table->integer('prelim');
             $table->integer('midterm');
             $table->integer('finals');

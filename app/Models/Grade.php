@@ -11,6 +11,7 @@ class Grade extends Model
 
     protected $fillable = [       
         'loading_id',
+        'profile_id',
         // 'school_year_id',
         'prelim',
         'midterm',
@@ -24,5 +25,7 @@ class Grade extends Model
     public function loading() {
         return $this->belongsTo(Loading::class);
     }
- 
+    public function profile() {
+        return $this->belongsTo(Profile::class);
+    }
 }
