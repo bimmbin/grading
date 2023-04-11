@@ -176,7 +176,8 @@
                             class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                             <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
                                 alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('student.grade') }}">Grades</a>
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                href="{{ route('student.grade') }}">Grades</a>
                         </li>
 
                         <li
@@ -199,14 +200,16 @@
                             class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                             <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                 alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('faculty.loads') }}">Loads</a>
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                href="{{ route('faculty.loads') }}">Loads</a>
                         </li>
 
                         <li
                             class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                             <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
                                 alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('faculty.loads-grades') }}">Grades</a>
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                href="{{ route('faculty.loads-grades') }}">Grades</a>
                         </li>
 
                         <li
@@ -255,62 +258,84 @@
                     </label>
                     <div class="burger-content bg-white border border-blu">
                         <ul class="flex flex-col items-center my-5 gap-2">
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14">
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
-                                    alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                    href="#">Schedule</a>
-                            </li>
+                            @auth
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
-                                    alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Student
-                                    List</a>
-                            </li>
+                                @if (Auth::user()->role === 'admin')
+                                    <li
+                                        class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14">
+                                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                            alt="" />
+                                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                            href="{{ route('admin.faculty') }}">Faculty List</a>
+                                    </li>
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
-                                    alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                    href="{{ route('admin.faculty') }}">Faculty
-                                    List</a>
-                            </li>
+                                    <li
+                                        class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                            alt="" />
+                                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                            href="{{ route('admin.studentlist') }}">Student
+                                            List</a>
+                                    </li>
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
-                                    alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                    href="{{ route('admin.subject') }}">Subject & Section</a>
-                            </li>
+                                    <li
+                                        class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                            alt="" />
+                                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                            href="{{ route('admin.subject') }}">Faculty
+                                            List</a>
+                                    </li>
+                                @endif
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
-                                    alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                    href="grades.html">Grades</a>
-                            </li>
+                                @if (Auth::user()->role === 'student')
+                                    <li
+                                        class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                            alt="" />
+                                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                            href="{{ route('student.grade') }}">Grades</a>
+                                    </li>
+                                @endif
+                                @if (Auth::user()->role === 'faculty')
+                                    <li
+                                        class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                            alt="" />
+                                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                            href="{{ route('faculty.loads') }}">Loads</a>
+                                    </li>
+                                    <li
+                                        class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                            alt="" />
+                                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                            href="{{ route('faculty.loads-grades') }}">Grades</a>
+                                    </li>
+                                @endif
+                            @endauth
+                            @auth
+                                <li>
+                                    <a href="" class="p-3">{{ auth()->user()->username }}</a>
+                                </li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="post" class="p-3 inline">
+                                        @csrf
+                                        <button type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            @endauth
 
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-setting.png"
-                                    alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                    href="#">Settings</a>
-                            </li>
-
-                            <li
-                                class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
-                                <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-about.png"
-                                    alt="" />
-                                <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">About</a>
-                            </li>
+                            @guest
+                                <li>
+                                    <a href="{{ route('login') }}" class="p-3">Login</a>
+                                </li>
+                                {{-- <li>
+                                    <a href="{{ route('register') }}" class="p-3">Register</a>
+                                </li> --}}
+                            @endguest
                         </ul>
+
                     </div>
                 </div>
 
@@ -351,9 +376,9 @@
                                 <li>
                                     <a href="{{ route('login') }}" class="p-3">Login</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="{{ route('register') }}" class="p-3">Register</a>
-                                </li>
+                                </li> --}}
                             @endguest
                         </ul>
                     </div>
