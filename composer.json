@@ -11,6 +11,7 @@
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
+        "paragonie/sodium_compat": "^1.19",
         "shuchkin/simplexlsx": "^1.0"
     },
     "require-dev": {
@@ -26,13 +27,17 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
         }
     },
+    
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -58,6 +63,7 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
+    
     "minimum-stability": "dev",
     "prefer-stable": true
 }

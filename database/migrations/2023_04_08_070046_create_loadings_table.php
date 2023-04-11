@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('profile_id');
             $table->integer('subject_id');
             $table->integer('section_id');
+            $table->text('status');
             // $table->integer('school_year_id');
             $table->timestamps();
         });

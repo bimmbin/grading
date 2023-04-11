@@ -1,41 +1,43 @@
 <?php
 
-namespace App\Http\Controllers\student;
+namespace App\Http\Controllers\faculty;
 
 use App\Models\Grade;
+use App\Models\Loading;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Encryption\Encrypter;
-use Illuminate\Support\Facades\Auth;
 
-class StudentGradeController extends Controller
+class GradeUnpostedController extends Controller
 {
-    public function index() {
-        
-        // dd(Auth::user()->profile->section->loading->status);
-        $grades = Grade::whereRelation('loading', 'status', 'posted')
-        ->where('profile_id', Auth::user()->profile->id)->get();
-     
-        $decryptedgrades = [];
+    public function index($id) {
 
+        $loading = Loading::findOrFail($id); 
+        $grades = Grade::whereRelation('loading', 'id', $id)->get();
+
+
+       
         $key = env('APP_KEY');
-
+        $decryptedgrades = [];
         foreach ($grades as $data) {
             $decryptedgrades[] = [
-   
+                "id" => $data->id,
+                "loading_id" => $data->id,
+                "profile_id" => $data->profile_id,
                 "prelim" => dekrip($data->prelim, $key),
                 "midterm" => dekrip($data->midterm, $key),
                 "finals" => dekrip($data->finals, $key),
                 "fg" => dekrip($data->fg, $key),
                 "ng" => dekrip($data->ng, $key),
                 "remarks" => dekrip($data->remarks, $key),
+                "status" => "unposted"
             ];
         }
-  
-                // dd($decryptedgrades);
-        return view('student.studentgrade', [
+
+
+        return view('faculty.gradeunposted', [
+            'loading' => $loading,
             'grades' => $grades,
             'decryptedgrades' => $decryptedgrades,
         ]);
-    }
+    } 
 }

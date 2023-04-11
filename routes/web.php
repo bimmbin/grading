@@ -10,10 +10,13 @@ use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\admin\SubjectController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\faculty\GradeViewController;
+use App\Http\Controllers\faculty\GradePostedController;
 use App\Http\Controllers\faculty\FacultyGradeController;
 use App\Http\Controllers\faculty\FacultyLoadsController;
 use App\Http\Controllers\student\StudentGradeController;
 use App\Http\Controllers\admin\RegisterStudentController;
+use App\Http\Controllers\faculty\GradeUnpostedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,8 +82,17 @@ Route::middleware(['auth', 'faculty'])->group(function () {
     //create section
     Route::get('/faculty/loads', [FacultyLoadsController::class, 'index'])->name('faculty.loads');
     
-    //grade
+    //generate grade
     Route::post('/admin/generate-grade', [FacultyGradeController::class, 'store'])->name('faculty.generategrade');
+    
+    //overall loads grade
+    Route::get('/faculty/loads/grade', [GradeViewController::class, 'index'])->name('faculty.loads-grades');
+    
+    //each loads grade
+    Route::get('/faculty/loads/grades/{id}', [GradeUnpostedController::class, 'index'])->name('faculty.grades-view');
+    
+    //grade posted
+    Route::post('/faculty/loads/posted/{id}', [GradePostedController::class, 'store'])->name('faculty.grade-posted');
 
 });
 

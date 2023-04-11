@@ -5,6 +5,7 @@ namespace App\Http\Controllers\faculty;
 use App\Models\Grade;
 use App\Models\Profile;
 use Shuchkin\SimpleXLSX;
+use Defuse\Crypto\Crypto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -33,7 +34,13 @@ class FacultyGradeController extends Controller
             $iterate++;
         }
 
-        // dd($grades);
+        // $teeex = 'this is encrioption1';
+        // $key = enkrip($teeex);
+        // $output = dekrip($key);
+        // dd($output);
+        $key = env('APP_KEY');
+
+
         foreach ($gradesData as $gradeData) {
 
             $profile = Profile::select('id')->where('studentno', $gradeData['studentno'])->first();
@@ -41,14 +48,14 @@ class FacultyGradeController extends Controller
             // dd($profile->id);
             $grades = Grade::firstOrNew([
                 'loading_id' => $gradeData['loading_id'], 
-                'prelim' => $gradeData['prelim'], 
-                'midterm' => $gradeData['midterm'], 
-                'finals' => $gradeData['finals'], 
-                'fg' => $gradeData['fg'], 
-                'ng' => $gradeData['ng'], 
-                'remarks' => $gradeData['remarks'], 
-                'status' => 'unposted', 
                 'profile_id' => $profile->id, 
+            ], [
+                'prelim' => enkrip($gradeData['prelim'], $key),
+                'midterm' => enkrip($gradeData['midterm'], $key),
+                'finals' => enkrip($gradeData['finals'], $key),
+                'fg' => enkrip($gradeData['fg'], $key),
+                'ng' => enkrip($gradeData['ng'], $key),
+                'remarks' => enkrip($gradeData['remarks'], $key),
             ]);
 
             if (!$grades->exists) {
@@ -59,6 +66,6 @@ class FacultyGradeController extends Controller
        
         // dd($filtered);
 
-        return redirect()->back();
+        return redirect()->route('faculty.grades-view', $request->loading_id);
     }
 }

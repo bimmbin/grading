@@ -1,7 +1,5 @@
 @extends('layout.layout')
 
-
-
 @section('content')
     <div class="flex flex-col items-center gap-10">
         {{-- <h1 class="text-[28px] font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
@@ -45,7 +43,7 @@
                         <th class="pt-8 pb-8 border-x border-blu">Midterm</th>
                         <th class="pt-8 pb-8 border-x border-blu">Finals</th>
                         <th class="pt-8 pb-8 border-x border-blu">Final Average</th>
-                        <th class="pt-8 pb-8 border-x border-blu">Equivalent</th>
+                        <th class="pt-8 pb-8 border-x border-blu">Numerical Grade</th>
                         <th class="pt-8 pb-8 border-x border-blu">Remarks</th>
                     </tr>
                 </thead>
@@ -56,12 +54,12 @@
                         <tr class="border-y border-blu">
                             <td class="pb-4 pt-4 border-x border-blu">{{ $grade->loading->subject->subject_code }}</td>
                             <td class="pb-4 pt-4 border-x border-blu">{{ $grade->loading->subject->subject_description }}</td>
-                            <td class="pb-4 pt-4 border-x border-blu">{{ $grade->prelim }}</td>
-                            <td class="pb-4 pt-4 border-x border-blu">{{ $grade->midterm }}</td>
-                            <td class="pb-4 pt-4 border-x border-blu">{{ $grade->finals }}</td>
-                            <td class="pb-4 pt-4 border-x border-blu">{{ $grade->fg }}</td>
-                            <td class="pb-4 pt-4 border-x border-blu">{{ $grade->ng }}</td>
-                            <td class="pb-4 pt-4 border-x border-blu">{{ $grade->remarks }}</td>
+                            <td class="pb-4 pt-4 border-x border-blu">{{ $decryptedgrades[$loop->index]['prelim'] }}</td>
+                            <td class="pb-4 pt-4 border-x border-blu">{{ $decryptedgrades[$loop->index]['midterm']}}</td>
+                            <td class="pb-4 pt-4 border-x border-blu">{{ $decryptedgrades[$loop->index]['finals'] }}</td>
+                            <td class="pb-4 pt-4 border-x border-blu">{{ $decryptedgrades[$loop->index]['fg']}}</td>
+                            <td class="pb-4 pt-4 border-x border-blu">{{ $decryptedgrades[$loop->index]['ng'] }}</td>
+                            <td class="pb-4 pt-4 border-x border-blu">{{ $decryptedgrades[$loop->index]['remarks'] }}</td>
                         </tr>
                     @endforeach
 

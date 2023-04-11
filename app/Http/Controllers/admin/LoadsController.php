@@ -35,8 +35,8 @@ class LoadsController extends Controller
         $load = Loading::firstOrNew([
             'profile_id' => $request->faculty_id,
             'section_id' => $request->section_id,
-            'subject_id' => $request->subject_id 
-            
+            'subject_id' => $request->subject_id,
+            'status' => 'unposted'
         ]);
 
         if (!$load->exists) {

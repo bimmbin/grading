@@ -16,15 +16,14 @@ return new class extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->integer('loading_id');
-            $table->integer('profile_id');
+            $table->text('profile_id');
             // $table->integer('school_year_id');
-            $table->integer('prelim');
-            $table->integer('midterm');
-            $table->integer('finals');
-            $table->integer('fg');
-            $table->integer('ng');
+            $table->text('prelim');
+            $table->text('midterm');
+            $table->text('finals');
+            $table->text('fg');
+            $table->text('ng');
             $table->text('remarks');
-            $table->text('status');
             $table->timestamps();
 
         });

@@ -19,7 +19,6 @@ class Grade extends Model
         'fg',
         'ng',
         'remarks',
-        'status',
     ];
 
     public function loading() {

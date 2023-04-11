@@ -125,6 +125,9 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    // Other configuration values
+    'iv' => '',
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

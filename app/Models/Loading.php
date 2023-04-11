@@ -13,6 +13,8 @@ class Loading extends Model
         'profile_id',
         'subject_id',
         'section_id', 
+        
+        'status',
         // 'school_year_id', 
        
     ];
