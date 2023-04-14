@@ -27,7 +27,7 @@
             class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white p-8 rounded w-[500px] md:w-[600px]">
                 <h1 class="text-2xl font-bold text-blu text-center mb-4">
-                    Create Faculty Account
+                    Create Student Account
                 </h1>
                 <div class="flex flex-col gap-4">
                     <label class="font-semibold" for="name">Last Name</label>

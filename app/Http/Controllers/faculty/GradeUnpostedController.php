@@ -7,6 +7,9 @@ use App\Models\Loading;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
+require_once app_path().'/helpers.php';
+
 class GradeUnpostedController extends Controller
 {
     public function index($id) {

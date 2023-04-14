@@ -167,7 +167,7 @@
                             class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
                             <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
                                 alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="grades.html">Grades</a>
+                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="{{ route('admin.grade') }}">Grades</a>
                         </li>
                     @endif
 
@@ -201,7 +201,7 @@
                             <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                 alt="" />
                             <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                href="{{ route('faculty.loads') }}">Loads</a>
+                                href="{{ route('faculty.loads', Auth::user()->profile->id) }}">Loads</a>
                         </li>
 
                         <li
@@ -209,7 +209,7 @@
                             <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-grades.png"
                                 alt="" />
                             <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                href="{{ route('faculty.loads-grades') }}">Grades</a>
+                                href="{{ route('faculty.loads-grades', Auth::user()->profile->id) }}">Grades</a>
                         </li>
 
                         <li
@@ -286,6 +286,15 @@
                                             href="{{ route('admin.subject') }}">Faculty
                                             List</a>
                                     </li>
+
+                                    <li
+                                        class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
+                                        <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
+                                            alt="" />
+                                        <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
+                                            href="{{ route('admin.grade') }}">Grade
+                                            List</a>
+                                    </li>
                                 @endif
 
                                 @if (Auth::user()->role === 'student')
@@ -303,14 +312,14 @@
                                         <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                             alt="" />
                                         <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                            href="{{ route('faculty.loads') }}">Loads</a>
+                                            href="{{ route('faculty.loads', Auth::user()->profile->id) }}">Loads</a>
                                     </li>
                                     <li
                                         class="w-[224px] flex items-center gap-3 py-3 hover:border-blu cursor-pointer hover:font-medium hover:text-blu max-xl:pl-6 border-l-2 hover:border-l-14 mt-2">
                                         <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                             alt="" />
                                         <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                            href="{{ route('faculty.loads-grades') }}">Grades</a>
+                                            href="{{ route('faculty.loads-grades', Auth::user()->profile->id) }}">Grades</a>
                                     </li>
                                 @endif
                             @endauth
@@ -330,9 +339,9 @@
                                 <li>
                                     <a href="{{ route('login') }}" class="p-3">Login</a>
                                 </li>
-                                {{-- <li>
+                                <li>
                                     <a href="{{ route('register') }}" class="p-3">Register</a>
-                                </li> --}}
+                                </li>
                             @endguest
                         </ul>
 
@@ -376,9 +385,9 @@
                                 <li>
                                     <a href="{{ route('login') }}" class="p-3">Login</a>
                                 </li>
-                                {{-- <li>
+                                <li>
                                     <a href="{{ route('register') }}" class="p-3">Register</a>
-                                </li> --}}
+                                </li>
                             @endguest
                         </ul>
                     </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\admin\SubjectController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\AdminGradeController;
 use App\Http\Controllers\faculty\GradeViewController;
 use App\Http\Controllers\faculty\GradePostedController;
 use App\Http\Controllers\faculty\FacultyGradeController;
@@ -37,8 +38,8 @@ Route::middleware(['guest'])->group(function () {
 Route::get('/', [LoginController::class, 'index'])->name('home');
 
 //register admin
-// Route::get('/register', [RegisterController::class, 'index'])->name('register');
-// Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -75,18 +76,28 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/faculty/loads/{id}', [LoadsController::class, 'index'])->name('admin.faculty.loads');
     Route::post('/admin/faculty/loads/assign', [LoadsController::class, 'store'])->name('admin.faculty.assignloads');
    
+    //grades
+    Route::get('/admin/grade', [AdminGradeController::class, 'grade'])->name('admin.grade');
+    Route::get('/admin/grade/submitted', [AdminGradeController::class, 'submittedGrades'])->name('admin.submittedgrade');
+   
 });
+
 
 Route::middleware(['auth', 'faculty'])->group(function () {
 
-    //create section
-    Route::get('/faculty/loads', [FacultyLoadsController::class, 'index'])->name('faculty.loads');
-    
+    //faculty Loads
+    Route::get('/faculty/loads/{id}', [FacultyLoadsController::class, 'index'])->name('faculty.loads');
+
     //generate grade
     Route::post('/admin/generate-grade', [FacultyGradeController::class, 'store'])->name('faculty.generategrade');
     
+   
+});
+
+Route::middleware(['auth', 'adminfaculty'])->group(function () {
+
     //overall loads grade
-    Route::get('/faculty/loads/grade', [GradeViewController::class, 'index'])->name('faculty.loads-grades');
+    Route::get('/faculty/loads/grade/{id}', [GradeViewController::class, 'index'])->name('faculty.loads-grades');
     
     //each loads grade
     Route::get('/faculty/loads/grades/{id}', [GradeUnpostedController::class, 'index'])->name('faculty.grades-view');

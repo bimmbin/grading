@@ -9,12 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class GradeViewController extends Controller
 {
-    public function index() {
-        $profile = Auth::user()->profile->id;
+    public function index($id) {
      
-        $loads = Loading::where('profile_id', $profile)->get();
+        $loads = Loading::where('profile_id', $id)->get();
 
-//    dd($loads);
         return view('faculty.loadsgrade', [
             'loads' => $loads
         ]);

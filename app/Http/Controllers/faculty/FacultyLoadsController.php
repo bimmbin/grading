@@ -9,11 +9,9 @@ use App\Models\Loading;
 
 class FacultyLoadsController extends Controller
 {
-    public function index() {
-
-        $profile = Auth::user()->profile->id;
+    public function index($id) {
      
-        $loads = Loading::where('profile_id', $profile)->get();
+        $loads = Loading::where('profile_id', $id)->get();
 
 //    dd($loads);
         return view('faculty.loads', [

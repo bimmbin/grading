@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\Facades\Auth;
 
+
+require_once app_path().'/helpers.php';
+
 class StudentGradeController extends Controller
 {
     public function index() {

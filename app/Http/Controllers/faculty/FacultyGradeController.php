@@ -9,6 +9,8 @@ use Defuse\Crypto\Crypto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+require_once app_path().'/helpers.php';
+
 class FacultyGradeController extends Controller
 {
     public function store(Request $request) {

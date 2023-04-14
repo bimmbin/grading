@@ -11,7 +11,14 @@ use App\Http\Controllers\Controller;
 class SubjectController extends Controller
 {
     public function index() {
-        return view('admin.subject-section');
+
+        $sections = Section::all();
+        $subjects = Subject::all();
+
+        return view('admin.subject-section', [
+            'sections' => $sections,
+            'subjects' => $subjects
+        ]);
     }
 
     public function store(Request $request) {
