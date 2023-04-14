@@ -5,8 +5,8 @@
 @section('content')
     <div class="flex flex-col justify-between items-center w-[100%] my-5 gap-3 xl:items-start">
 
-        <h1 class="text-[28px] font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
-            Unposted
+        <h1 class="text-[28px] capitalize font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
+            {{ $loading->status }}
         </h1>
         <h1 class="text-[28px] font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
             {{ $loading->subject->subject_description }} ({{ $loading->subject->subject_code }})

@@ -14,6 +14,6 @@ class GradePostedController extends Controller
         $loading->status = 'posted';
         $loading->save();
 
-        return redirect()->route('faculty.loads-grades');
+        return redirect()->back();
     }
 }
