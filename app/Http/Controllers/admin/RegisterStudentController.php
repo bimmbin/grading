@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
+require_once app_path().'/helpers.php';
+
 class RegisterStudentController extends Controller
 {
     public function registerStudent(Request $request)
@@ -53,6 +55,8 @@ class RegisterStudentController extends Controller
 
         // dd($filtered);
 
+        // dd($datas);
+
         foreach ($datas as $data) {
   
             $user = User::firstOrNew(['username' => $data['lastname'] . $data['studentno']], [
@@ -65,7 +69,9 @@ class RegisterStudentController extends Controller
                 $user->save();
             }
 
-            $section = Section::select('id')->where('section_name', $data['section'])->first();
+            $properSection = manipulateSection($data['section']);
+            // dd($properSection);
+            $section = Section::select('id')->where('section_name', $properSection)->first();
 
             // dd($section->id);
             $userprofile = Profile::firstOrNew(['user_id' => $user->id], [

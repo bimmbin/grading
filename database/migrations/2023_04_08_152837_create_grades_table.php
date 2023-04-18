@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->integer('loading_id');
+            $table->foreignId('loading_id')->constrained()->onDelete('cascade'); // cascade on delete
+
             $table->text('profile_id');
             // $table->integer('school_year_id');
             $table->text('prelim');

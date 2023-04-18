@@ -25,8 +25,8 @@
                         @foreach ($subjects as $subject)
                             <div class="flex items-center gap-3">
                                 <input class="form-radio h-4 w-4 cursor-pointer" type="radio" name="subject_id"
-                                    id="cse101" value="{{ $subject->id }}" />
-                                <label class="text-sm" for="cse101">{{ $subject->subject_description }}</label><br />
+                                    id="cs{{ $loop->index }}" value="{{ $subject->id }}" />
+                                <label class="text-sm cursor-pointer" for="cs{{ $loop->index }}">{{ $subject->subject_code }} {{ $subject->subject_description }}</label><br />
                             </div>
                         @endforeach
 
@@ -67,8 +67,8 @@
                         @foreach ($sections as $section)
                             <div class="flex items-center gap-3">
                                 <input class="form-radio h-4 w-4 cursor-pointer" type="radio" name="section_id"
-                                    id="bscs-1a" value="{{ $section->id }}" />
-                                <label class="text-sm" for="1st-year">{{ $section->section_name }}</label><br />
+                                    id="scs{{ $loop->index }}" value="{{ $section->id }}" />
+                                <label class="text-sm cursor-pointer" for="scs{{ $loop->index }}">{{ $section->section_name }}</label><br />
                             </div>
                         @endforeach
 

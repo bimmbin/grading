@@ -13,9 +13,13 @@ class FacultyLoadsController extends Controller
      
         $loads = Loading::where('profile_id', $id)->get();
 
-//    dd($loads);
+        $allLoadsHaveGrades = $loads->every(function ($loading) {
+            return $loading->grade->count() > 0;
+        });
+        // dd($allLoadsHaveGrades);
         return view('faculty.loads', [
-            'loads' => $loads
+            'loads' => $loads,
+            'allLoadsHaveGrades' => $allLoadsHaveGrades
         ]);
     }
 

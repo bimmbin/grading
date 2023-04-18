@@ -7,6 +7,8 @@ use Shuchkin\SimpleXLSX;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+require_once app_path().'/helpers.php';
+
 class SectionController extends Controller
 {
     public function index() {
@@ -38,8 +40,13 @@ class SectionController extends Controller
             ];
         })->sortBy('section');
 
+    
         foreach ($filtered as $section) {
-            $section = Section::firstOrNew(['section_name' => $section['section']]);
+
+            
+            
+            // dd($seksyon);
+            $section = Section::firstOrNew(['section_name' => manipulateSection($section['section'])]);
 
             if (!$section->exists) {
                 $section->save();

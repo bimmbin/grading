@@ -75,12 +75,13 @@
                 <th class="pt-8 pb-8">Last name</th>
                 <th class="pt-8 pb-8">First name</th>
                 <th class="pt-8 pb-8">M.I</th>
-                <th class="pt-8 pb-8">Year & Section</th>
+                <th class="pt-8 pb-8">Section</th>
                 <th class="pt-8 pb-8">Prelim</th>
                 <th class="pt-8 pb-8">Midterm</th>
                 <th class="pt-8 pb-8">Final</th>
                 <th class="pt-8 pb-8">Final Average</th>
                 <th class="pt-8 pb-8">Equivalent</th>
+                <th class="pt-8 pb-8">Remarks</th>
             </tr>
         </thead>
 
@@ -98,6 +99,7 @@
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['finals'] }}</td>
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['fg'] }}</td>
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['ng'] }}</td>
+                    <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['remarks'] }}</td>
                 </tr>
             @endforeach
 

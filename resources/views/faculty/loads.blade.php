@@ -26,9 +26,19 @@
         </option>
       </select>
     </form> --}}
+        @if (session('message'))
+            <div class="bg-red-500 p-4 rounded-lg mb-2 text-lg text-white text-center">
+                {{ session('message') }}
+            </div>
+            @if (session('message2'))
+                <div class="bg-red-400 p-4 rounded-lg mb-6 text-white text-center">
+                    {{ session('message2') }}
+                </div>
+            @endif
+        @endif
 
         <div id="report-popup" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75 hidden">
-            <form action="{{ route('faculty.generategrade') }}" method="post"  enctype="multipart/form-data"
+            <form action="{{ route('faculty.generategrade') }}" method="post" enctype="multipart/form-data"
                 class="bg-white rounded-lg px-5 py-8 w-full h-fit flex flex-col sm:flex-row sm:items-center sm:w-fit">
                 @csrf
                 <input class="text-black mb-3 sm:mb-0" type="file" name="file" />
@@ -41,9 +51,17 @@
 
     </div>
 
-    <h1 class="text-[28px] my-5 font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
-        Select from your Subject loads
-    </h1>
+    <div class="flex items-center gap-5">
+        <h1 class="text-[28px] my-5 font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
+            Select from your Subject loads
+        </h1>
+        @if (!$allLoadsHaveGrades)
+            <button onclick="generate()" class="bg-blu px-7 py-3 text-center text-white rounded hover:bg-opacity-70">
+                Generate
+            </button>
+        @endif
+    </div>
+
 
     <div class="bg-white rounded-xl overflow-x-auto pb-5">
         <table class="table-auto text-center w-[700px] text-lg md:w-full">
@@ -54,7 +72,6 @@
                     <th class="pt-8 pb-8">Description</th>
                     {{-- <th class="pt-8 pb-8">Year</th> --}}
                     <th class="pt-8 pb-8">Section</th>
-                    <th class="pt-8 pb-8">Action</th>
                 </tr>
             </thead>
 
@@ -67,9 +84,6 @@
                         <td class="pb-4 pt-2">{{ $load->subject->subject_description }}</td>
                         {{-- <td class="pb-4 pt-2"></td> --}}
                         <td class="pb-4 pt-2">{{ $load->section->section_name }}</td>
-                        <td class="text-blu underline cursor-pointer hover:opacity-70" onclick="generate({{ $load->id }})">
-                            Generate
-                        </td>
                     </tr>
                 @endforeach
 
@@ -84,12 +98,11 @@
 
     const generateBtns = document.querySelectorAll("#generate-btn");
 
-    function generate(i) {
+    function generate() {
 
-      reportPopup.classList.toggle("hidden");
-      document.getElementById("load-id").value = i;
+    reportPopup.classList.toggle("hidden");
     }
-    
+
 
     reportPopup.addEventListener("click", function (event) {
     if (event.target === reportPopup) {

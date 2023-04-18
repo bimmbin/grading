@@ -18,8 +18,8 @@ class LoadsController extends Controller
         $loads = Loading::whereRelation('profile', 'id', $id)->get();
 
 
-        $subjects = Subject::all();
-        $sections = Section::all();
+        $subjects = Subject::get()->sortBy('subject_code');
+        $sections = Section::get()->sortBy('section_name');
         // dd($faculty);
         return view('admin.viewloads', [
             'loads' => $loads,

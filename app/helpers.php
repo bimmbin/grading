@@ -16,4 +16,32 @@ function dekrip($encrypted, $key) {
     return $decrypted;
 }
 
+function manipulateSection($section) {
+    //get the first number
+    $firstnum = substr($section, 0, 1);
+
+    //check if its act
+    $ifAct = substr($section, 1, 1);
+
+    //conditional if its act
+    if ($ifAct == 'A') {
+        // dd('this is act');
+
+        //replace it with space and the firstnumber
+        $replaced = str_replace('-', 'h '.$firstnum, $section);
+        //dont read the firstnumber on the result of replace
+        $seksyon = substr($replaced, 1);
+
+        return $seksyon;
+    } 
+    /////////else
+    
+    //replace it with space and the firstnumber
+    $replaced = str_replace('-', ' '.$firstnum, $section);
+    //dont read the firstnumber on the result of replace
+    $seksyon = substr($replaced, 1);
+
+    return $seksyon;
+}
+
 ?>

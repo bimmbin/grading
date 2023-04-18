@@ -12,7 +12,7 @@ class SubjectController extends Controller
 {
     public function index() {
 
-        $sections = Section::all();
+        $sections = Section::get()->sortby('section_name');
         $subjects = Subject::all();
 
         return view('admin.subject-section', [
