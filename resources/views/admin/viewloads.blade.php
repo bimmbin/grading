@@ -11,7 +11,8 @@
         <!-- The popup -->
         <div id="create-account-popup"
             class="fixed top-0 left-0 w-full h-full overflow-y-scroll flex justify-center bg-black bg-opacity-50 pt-20 hidden box-border">
-            <form action="{{ route('admin.faculty.assignloads') }}" class="bg-white p-8 rounded h-fit w-full md:w-[45rem] flex flex-col gap-5" method="post">
+            <form action="{{ route('admin.faculty.assignloads') }}"
+                class="bg-white p-8 rounded h-fit w-full md:w-[60rem] flex flex-col gap-5" method="post">
                 @csrf
                 <h1 class="text-xl font-bold text-blu text-start mb-4">
                     Assign Loads
@@ -22,13 +23,17 @@
                             Subject
                         </h1>
 
-                        @foreach ($subjects as $subject)
-                            <div class="flex items-center gap-3">
-                                <input class="form-radio h-4 w-4 cursor-pointer" type="radio" name="subject_id"
-                                    id="cs{{ $loop->index }}" value="{{ $subject->id }}" />
-                                <label class="text-sm cursor-pointer" for="cs{{ $loop->index }}">{{ $subject->subject_code }} {{ $subject->subject_description }}</label><br />
-                            </div>
-                        @endforeach
+
+                        <select class="py-2 border-2 border-blue-500 rounded-md max-sm:w-11/12 px-5 placeholder:text-sm w-full" name="subject_id">
+                            @foreach ($subjects as $subject)
+                                <option class="form-radio h-4 w-4 cursor-pointer"
+                                    id="cs{{ $loop->index }}" value="{{ $subject->id }}">{{ $subject->subject_code }}
+                                    {{ $subject->subject_description }}</option>
+                            @endforeach
+                        </select>
+
+
+
 
                         {{-- <div class="flex items-center gap-3">
                             <input class="form-radio h-4 w-4 cursor-pointer" type="radio" name="subject"
@@ -59,26 +64,30 @@
                         </div>
                     </div> --}}
 
-                    <div class="w-[12.5rem] py-5 px-10  border-2 rounded border-blu flex flex-col gap-5 overflow-y-auto">
-                        <h1 class="text-lg font-bold text-blu text-center">
+                    <div
+                        class="w-[25rem] py-5 px-10  border-2 rounded border-blu flex flex-col gap-5 overflow-y-auto">
+                        <h1 class="text-lg font-bold text-blu text-center w-full">
                             Section
                         </h1>
 
-                        @foreach ($sections as $section)
-                            <div class="flex items-center gap-3">
-                                <input class="form-radio h-4 w-4 cursor-pointer" type="radio" name="section_id"
-                                    id="scs{{ $loop->index }}" value="{{ $section->id }}" />
-                                <label class="text-sm cursor-pointer" for="scs{{ $loop->index }}">{{ $section->section_name }}</label><br />
-                            </div>
-                        @endforeach
-
+                        <div class="flex flex-col flex-wrap gap-3  h-[15rem]">
+                            @foreach ($sections as $section)
+                                <div class="flex items-center gap-3">
+                                    <input class="form-radio h-5 w-5 cursor-pointer" type="checkbox" name="section_ids[]"
+                                        id="scs{{ $loop->index }}" value="{{ $section->id }}" />
+                                    <label class="text-md cursor-pointer"
+                                        for="scs{{ $loop->index }}">{{ $section->section_name }}</label><br />
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
                 <input type="hidden" name="faculty_id" value="{{ $faculty->id }}">
 
                 <div class="flex justify-end mt-4">
-                    <p id="cancel-btn" class="bg-gray-400 px-6 py-2 rounded text-white mr-4 hover:bg-opacity-70 cursor-pointer">
+                    <p id="cancel-btn"
+                        class="bg-gray-400 px-6 py-2 rounded text-white mr-4 hover:bg-opacity-70 cursor-pointer">
                         Cancel
                     </p>
                     <button id="create-btn" class="bg-blu px-6 py-2 rounded text-white hover:bg-opacity-70">
@@ -108,14 +117,14 @@
             <tbody class="space-y-6 text-center font-regular text-sm md:text-base lg:text-lg font-medium">
 
                 @foreach ($loads as $load)
-                <tr class="space-y-5">
-                    <td class="pb-4 pt-2">{{ $loop->iteration }}</td>
-                    <td class="pb-4 pt-2">{{ $load->subject->subject_code }}</td>
-                    <td class="pb-4 pt-2">{{ $load->subject->subject_description }}</td>
-                    <td class="pb-4 pt-2">{{ $load->section->section_name }}</td>
-                </tr>
+                    <tr class="space-y-5">
+                        <td class="pb-4 pt-2">{{ $loop->iteration }}</td>
+                        <td class="pb-4 pt-2">{{ $load->subject->subject_code }}</td>
+                        <td class="pb-4 pt-2">{{ $load->subject->subject_description }}</td>
+                        <td class="pb-4 pt-2">{{ $load->section->section_name }}</td>
+                    </tr>
                 @endforeach
-              
+
             </tbody>
         </table>
     </div>

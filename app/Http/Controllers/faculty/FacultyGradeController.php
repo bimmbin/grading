@@ -54,15 +54,16 @@ class FacultyGradeController extends Controller
                     ]);
                     
                     }
-                // dd($loading);  
-                // each worksheet process
-                // dd($students->rows($array, 0));
-                
+           
                 $gradesData = [];
        
                 $iterate = 0;
-                    // dd($students->rows($i, 0));
                 foreach ($students->rows($i, 0) as $student) {
+                    //check if student number is empty, then proceeds to next loop
+                    if (empty($student[1])) {
+                        continue;
+                    }
+
                     if ($iterate != 0) {
                    
                  
@@ -87,15 +88,17 @@ class FacultyGradeController extends Controller
                 // dd($output);
                 $key = env('APP_KEY');
 
-
+                // dd($gradesData);
                 foreach ($gradesData as $gradeData) {
 
+                   
                     $profile = Profile::select('id')->where('studentno', $gradeData['studentno'])->first();
                     if (!$profile) {
                         return redirect()->route('faculty.loads', Auth::user()->profile->id)
                         ->with([
                         'message' => 'Student with student no. ' . $gradeData['studentno'] . "  doesn't exist in the system",
-                        'message2' => 'Retrieved from ' . $section . '-' . $subject_code . ' worksheet'
+                        'message2' => 'Retrieved from ' . $section . '-' . $subject_code . ' worksheet',
+                        'message3' => 'Note: Make sure you have the correct student number in your grading sheet that was mentioned above'
                     ]);
                     }
                     // dd($gradeData);

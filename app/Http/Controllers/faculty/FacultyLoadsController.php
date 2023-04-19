@@ -11,15 +11,24 @@ class FacultyLoadsController extends Controller
 {
     public function index($id) {
      
-        $loads = Loading::where('profile_id', $id)->get();
+        $loads = Loading::where('profile_id', $id)->has('grade')->get();
 
-        $allLoadsHaveGrades = $loads->every(function ($loading) {
-            return $loading->grade->count() > 0;
-        });
+        $loads->load('grade');
+
+        $hasgrade = '';
+        // Check if the "posts" relationship has been loaded for all users
+        foreach ($loads as $load) {
+            if ($load->relationLoaded('grade')) {
+                $hasgrade = true;
+                
+            } else {
+                $hasgrade = false;
+            }
+        }
         // dd($allLoadsHaveGrades);
         return view('faculty.loads', [
             'loads' => $loads,
-            'allLoadsHaveGrades' => $allLoadsHaveGrades
+            'hasgrade' => $hasgrade,
         ]);
     }
 

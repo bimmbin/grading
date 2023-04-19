@@ -35,10 +35,10 @@
 
                     @php $headings = 0; @endphp
                     @foreach ($students->rows() as $student)
-                        @if ($headings != 0 && $headings != 1)
+                        @if ($headings != 0)
                             <tr class="border bg-tablebg">
                                 <td class="py-2 text-center">
-                                    {{ $loop->iteration - 2 }}
+                                    {{ $loop->iteration - 1 }}
                                 </td>
 
                                 <td class="pl-5">{{ $student[0] }} <input type="hidden" name="studentno[]"

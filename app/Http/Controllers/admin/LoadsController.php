@@ -32,16 +32,19 @@ class LoadsController extends Controller
     public function store(Request $request) {
         // dd($request);
 
-        $load = Loading::firstOrNew([
-            'profile_id' => $request->faculty_id,
-            'section_id' => $request->section_id,
-            'subject_id' => $request->subject_id,
-            'status' => 'unposted'
-        ]);
-
-        if (!$load->exists) {
-            $load->save();
+        foreach ($request->section_ids as $section_id) {
+            $load = Loading::firstOrNew([
+                'profile_id' => $request->faculty_id,
+                'section_id' => $section_id,
+                'subject_id' => $request->subject_id,
+                'status' => 'unposted'
+            ]);
+    
+            if (!$load->exists) {
+                $load->save();
+            }
         }
+       
 
         return redirect()->back();
     }

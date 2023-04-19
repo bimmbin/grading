@@ -31,8 +31,13 @@
                 {{ session('message') }}
             </div>
             @if (session('message2'))
-                <div class="bg-red-400 p-4 rounded-lg mb-6 text-white text-center">
+                <div class="bg-red-400 p-4 rounded-lg mb-1 text-white text-center">
                     {{ session('message2') }}
+                </div>
+            @endif
+            @if (session('message3'))
+                <div class="bg-red-400 p-4 rounded-lg text-white text-center">
+                    {{ session('message3') }}
                 </div>
             @endif
         @endif
@@ -55,7 +60,7 @@
         <h1 class="text-[28px] my-5 font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
             Select from your Subject loads
         </h1>
-        @if (!$allLoadsHaveGrades)
+        @if (!$hasgrade)
             <button onclick="generate()" class="bg-blu px-7 py-3 text-center text-white rounded hover:bg-opacity-70">
                 Generate
             </button>
