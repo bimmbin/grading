@@ -21,6 +21,29 @@ class FacultyGradeController extends Controller
         
         $students = SimpleXLSX::parse($request->file);
 
+        //checks if its the right format
+        $cellHeader = $students->rows(5, 1);
+                
+        if (empty($students->rows(5, 1)) ||
+            
+            !(
+            $cellHeader[0][0] == 'CNT' && 
+            $cellHeader[0][1] == 'STD NUMBER' &&
+            $cellHeader[0][2] == 'NAME OF STUDENTS' &&
+            $cellHeader[0][3] == 'SECTION' &&
+            $cellHeader[0][4] == 'P' &&
+            $cellHeader[0][5] == 'M' &&
+            $cellHeader[0][6] == 'F' &&
+            $cellHeader[0][7] == 'F.G.' &&
+            $cellHeader[0][8] == 'N.G.' &&
+            $cellHeader[0][9] == 'REMARKS'
+            )) {
+                return redirect()->route('faculty.loads', Auth::user()->profile->id)
+                ->with([
+                    'message' => 'Wrong format',
+                    'message2' => 'Note: Make sure you upload the grading sheet excel'
+                ]);
+        } 
 
         //remove sheets that starts with CS
         $filteredArray = collect($students->sheetnames())->reject(function ($item) {
@@ -33,6 +56,10 @@ class FacultyGradeController extends Controller
         foreach ($filteredArray as $i => $array ) {
             
             if ($iterates > 4) {
+
+               
+                
+
                 // $string = "BSCS 2B-CSA 103";
                 $parts = explode("-", $array);     
          

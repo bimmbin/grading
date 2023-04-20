@@ -18,25 +18,31 @@
                     Create Faculty Account
                 </h1>
                 <div class="flex flex-col gap-4">
-                    <label class="font-semibold" for="name">Last Name</label>
-                    <input class="rounded border-blu border py-2 px-3" type="text" id="name" name="lastname"
+                    <label class="font-semibold" for="lastname">Last Name</label>
+                    <input class="rounded border-blu border py-2 px-3" type="text" id="lastname" name="lastname"
                         placeholder="Enter your Last name" />
 
-                    <label class="font-semibold" for="name">First Name</label>
-                    <input class="rounded border-blu border py-2 px-3" type="text" id="name" name="firstname"
+                    <label class="font-semibold" for="firstname">First Name</label>
+                    <input class="rounded border-blu border py-2 px-3" type="text" id="firstname" name="firstname"
                         placeholder="Enter your First name" />
 
-                    <label class="font-semibold" for="name">Middle Initial</label>
-                    <input class="rounded border-blu border py-2 px-3" type="text" id="name" name="middlename"
+                    <label class="font-semibold" for="middlename">Middle Initial</label>
+                    <input class="rounded border-blu border py-2 px-3" maxlength="1" type="text" id="middlename" name="middlename"
                         placeholder="Enter your Middle Initial" />
 
-                    <label class="font-semibold" for="department">Department</label>
-                    <input class="rounded border-blu border py-2 px-3" type="text" id="department" name="department"
+                    <label class="font-semibold" for="employeeno">Employee Number</label>
+                    <input class="rounded border-blu border py-2 px-3" type="number" id="employeeno" name="employeeno"
                         placeholder="Enter your Last name" />
 
-                    <label class="font-semibold" for="name">Employee Number</label>
-                    <input class="rounded border-blu border py-2 px-3" type="text" id="name" name="employeeno"
-                        placeholder="Enter your Last name" />
+                    <label class="font-semibold" for="department">Department</label>
+                    <select class="rounded border-blu border py-2 px-3" type="text" id="department" name="department"
+                        placeholder="Enter your Last name"> 
+                        <option value="BSCS">BSCS</option>
+                        <option value="BSHM">BSHM</option>
+                        <option value="BSC">BSC</option>
+                        <option value="BEED">BEED</option>
+                        <option value="BSED">BSED</option>
+                    </select>
 
                 </div>
                 <div class="flex justify-end mt-4">
@@ -62,6 +68,7 @@
             <thead class="mt-10 font-bold text-sm md:text-base lg:text-lg font-medium">
                 <tr>
                     <th class="pt-8 pb-8">No.</th>
+                    <th class="pt-8 pb-8">Employee Number</th>
                     <th class="pt-8 pb-8">Last Name</th>
                     <th class="pt-8 pb-8">First Name</th>
                     <th class="pt-8 pb-8">M.I</th>
@@ -74,6 +81,7 @@
                 @foreach ($faculties as $faculty)
                     <tr class="space-y-5">
                         <td class="pb-4 pt-2">{{ $loop->iteration }}</td>
+                        <td class="pb-4 pt-2">{{ $faculty->employeeno }}</td>
                         <td class="pb-4 pt-2">{{ $faculty->lastname }}</td>
                         <td class="pb-4 pt-2">{{ $faculty->firstname }}</td>
                         <td class="pb-4 pt-2">{{ $faculty->middlename }}</td>

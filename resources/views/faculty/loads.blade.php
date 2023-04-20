@@ -46,7 +46,7 @@
             <form action="{{ route('faculty.generategrade') }}" method="post" enctype="multipart/form-data"
                 class="bg-white rounded-lg px-5 py-8 w-full h-fit flex flex-col sm:flex-row sm:items-center sm:w-fit">
                 @csrf
-                <input class="text-black mb-3 sm:mb-0" type="file" name="file" />
+                <input class="text-black mb-3 sm:mb-0" type="file" name="file" accept=".xlsx, .xls, .xlsm" />
                 <input type="hidden" id="load-id" name="loading_id">
                 <button class="bg-blu text-sm px-4 py-2 rounded text-white hover:opacity-70">
                     Upload
@@ -60,11 +60,13 @@
         <h1 class="text-[28px] my-5 font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
             Select from your Subject loads
         </h1>
-        @if (!$hasgrade)
-            <button onclick="generate()" class="bg-blu px-7 py-3 text-center text-white rounded hover:bg-opacity-70">
-                Generate
-            </button>
-        @endif
+
+       
+            @if (!$hasgrade)
+                <button onclick="generate()" class="bg-blu px-7 py-3 text-center text-white rounded hover:bg-opacity-70">
+                    Generate
+                </button>
+            @endif
     </div>
 
 

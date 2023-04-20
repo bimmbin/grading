@@ -33,11 +33,11 @@
                     Submitted Grades
                 </h1>
                 <h2 class="text-[64px] font-bold text-white text-right text-end mt-[11rem]">
-                    23
+                    {{ $submittedGradesCount }}
                 </h2>
             </a>
 
-            {{-- <a href="view-change-of-request.html"
+            <a href="view-change-of-request.html"
                 class="w-[100%] max-w-[705px] px-[53px] py-5 rounded-2xl bg-lightblu max-xl:max-w-none hover:opacity-70">
                 <h1 class="text-[40px] font-bold text-blu">
                     Changed of Request Grades
@@ -45,7 +45,7 @@
                 <h2 class="text-[64px] font-bold text-blu text-right text-end mt-[7rem]">
                     4
                 </h2>
-            </a> --}}
+            </a>
         </div>
     </div>
 @endsection

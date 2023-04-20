@@ -9,7 +9,15 @@ use App\Http\Controllers\Controller;
 class AdminGradeController extends Controller
 {
     public function grade() {
-        return view('admin.grade');
+        
+        $submittedGradesCount = Profile::whereHas('loading', function ($query) {
+            $query->where('status', 'posted');
+        })->distinct()->count();
+
+        // dd($faculties);
+        return view('admin.grade', [
+            'submittedGradesCount' => $submittedGradesCount
+        ]);
     }
 
     public function submittedGrades() {
