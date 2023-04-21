@@ -18,6 +18,7 @@ use App\Http\Controllers\faculty\FacultyGradeController;
 use App\Http\Controllers\faculty\FacultyLoadsController;
 use App\Http\Controllers\student\StudentGradeController;
 use App\Http\Controllers\admin\RegisterStudentController;
+use App\Http\Controllers\faculty\EditGradeController;
 use App\Http\Controllers\faculty\GradeUnpostedController;
 use App\Http\Controllers\faculty\RemarksController;
 
@@ -102,6 +103,9 @@ Route::middleware(['auth', 'faculty'])->group(function () {
     
     //Change of request grades
     Route::post('/admin/request-change-grade', [RemarksController::class, 'store'])->name('faculty.requestchange');
+    
+    //Edit student grades
+    Route::post('/admin/edit-grade', [EditGradeController::class, 'store'])->name('faculty.editgrade');
     
 });
 

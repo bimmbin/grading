@@ -11,7 +11,7 @@ class GradeViewController extends Controller
 {
     public function index($id) {
      
-        $loads = Loading::where('profile_id', $id)->get();
+        $loads = Loading::where('profile_id', $id)->latest()->get();
 
         return view('faculty.loadsgrade', [
             'loads' => $loads

@@ -18,9 +18,9 @@
             @if (count($grades) !== 0)
                 @if ($loading->status !== 'posted')
                     <div class="flex gap-5">
-                        <form action="#">
+                        {{-- <form action="#">
                             <button class="bg-blu hover:bg-blue-700 text-white py-2 px-4 rounded cursor-pointe">Save</button>
-                        </form>
+                        </form> --}}
 
 
                         <button id="generate-report-btn" class="bg-blu px-5 text-white h-[40px] rounded hover:opacity-70">
@@ -64,7 +64,8 @@
 
                     <div id="report-popup"
                         class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75 hidden">
-                        <form action="{{ route('faculty.requestchange') }}" method="post" class="bg-white rounded-lg p-8 w-[600px] h-fit relative">
+                        <form action="{{ route('faculty.requestchange') }}" method="post"
+                            class="bg-white rounded-lg p-8 w-[600px] h-fit relative">
                             @csrf
                             <h1 class="font-bold text-blu pb-10 text-center"
                                 style="font-size: clamp(1.5rem, 0.375rem + 1.5625vw, 2.25rem);">
@@ -74,7 +75,7 @@
                                 placeholder="input your remarks here..."></textarea>
                             <input type="hidden" name="loading_id" value="{{ $loading->id }}">
                             <div class="flex flex-col gap-3 items-center justify-between">
-                                <div >
+                                <div>
                                     <button
                                         class="text-center cursor-pointer bg-blu mt-5 text-white hover:bg-gray-400 text-gray-800 font-bold py-2 px-7 rounded">
                                         Submit
@@ -111,6 +112,9 @@
                 <th class="pt-8 pb-8">Final Average</th>
                 <th class="pt-8 pb-8">Equivalent</th>
                 <th class="pt-8 pb-8">Remarks</th>
+                @if ($loading->status !== 'posted')
+                    <th class="pt-8 pb-8">Action</th>
+                @endif
             </tr>
         </thead>
 
@@ -129,12 +133,131 @@
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['fg'] }}</td>
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['ng'] }}</td>
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['remarks'] }}</td>
+
+                    @if ($loading->status !== 'posted')
+                        <td class="pb-4 pt-4">
+
+                            <button class="underline text-blu"
+                                onclick="editStudent(
+
+                                        '{{ $decryptedgrades[$loop->index]['prelim'] }}',
+                                        '{{ $decryptedgrades[$loop->index]['midterm'] }}',
+                                        '{{ $decryptedgrades[$loop->index]['finals'] }}',
+                                        '{{ $decryptedgrades[$loop->index]['fg'] }}',
+                                        '{{ $decryptedgrades[$loop->index]['ng'] }}',
+                                        '{{ $decryptedgrades[$loop->index]['remarks'] }}',
+                                        '{{ $grade->profile->lastname }}',
+                                        '{{ $grade->profile->firstname }}',
+                                        '{{ $grade->profile->middlename }}',
+                                        '{{ $grade->profile->section->section_name }}',
+                                        '{{ $grade->id }}',
+                                        
+                                        )">
+                                Edit
+                            </button>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
 
 
         </tbody>
     </table>
+
+    <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
+        id="editDiaglogBox">
+        <div class="absolute z-50 bg-white py-5 px-5 rounded-lg ">
+
+            <form action="{{ route('faculty.editgrade') }}" method="post" class="flex justify-center items-center">
+                @csrf
+
+                <div class="flex max-sm:flex-col items-center">
+                    <div class="flex w-[53rem] max-sm:w-full  flex-wrap gap-2 justify-center items-center max-sm:flex-col">
+
+                        <div class="flex flex-col max-sm:w-full">
+                            <label for="g" class="font-semibold text-sm">Lastname</label>
+                            <input type="text" class="cursor-default w-[200px] max-sm:w-full py-2 text-lg" id="g"
+                                placeholder="Student No" name="studentno" disabled="true">
+                        </div>
+
+                        <div class="flex flex-col max-sm:w-full">
+                            <label for="h" class="font-semibold text-sm">Firstname</label>
+                            <input type="text" class="w-[200px] max-sm:w-full py-2 text-lg" id="h"
+                                placeholder="Student No" name="studentno" disabled="true">
+                        </div>
+
+                        <div class="flex flex-col max-sm:w-full">
+                            <label for="i" class="font-semibold text-sm">Middlename</label>
+                            <input type="text" class="w-[200px] max-sm:w-full py-2 text-lg" id="i"
+                                placeholder="Student No" name="studentno" disabled="true">
+                        </div>
+
+                        <div class="flex flex-col max-sm:w-full">
+                            <label for="j" class="font-semibold text-sm">Section</label>
+                            <input type="text" class="w-[200px] max-sm:w-full py-2 text-lg" id="j"
+                                placeholder="Student No" name="studentno" disabled="true">
+                        </div>
+
+                        <div class="flex flex-col max-sm:w-full">
+                            <label for="a" class="font-semibold text-sm">Prelim</label>
+                            <input type="text"
+                                class="w-[120px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                id="a" placeholder="Prelim" name="prelim">
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label for="b" class="font-semibold text-sm">Midterm</label>
+                            <input type="text"
+                                class="w-[120px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                id="b" placeholder="Midterm" name="midterm">
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label for="c" class="font-semibold text-sm">Final</label>
+                            <input type="text"
+                                class="w-[120px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                id="c" placeholder="Final" name="final">
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label for="d" class="font-semibold text-sm">Final Average</label>
+                            <input type="text"
+                                class="w-[120px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                id="d" placeholder="Final Average" name="fg">
+                        </div>
+
+
+                        <div class="flex flex-col">
+                            <label for="e" class="font-semibold text-sm">Equivalent</label>
+
+                            <input type="text"
+                                class="w-[120px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                id="e" placeholder="Equivalent" name="ng">
+                        </div>
+
+                        <div class="flex flex-col">
+                            <label for="f" class="font-semibold text-sm">Remarks</label>
+                            <input type="text"
+                                class="w-[120px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                id="f" placeholder="Remarks" name="remarks">
+                        </div>
+
+                        <input type="hidden" id="k" name="id">
+                    </div>
+
+                    <div class="flex flex-col gap-2  max-sm:w-full  max-sm:mt-2">
+                        <span type="submit" id="cancelBtn"
+                            class=" w-[100px] max-sm:w-full bg-gray-400 hover:bg-gray-500 py-2 px-3 text-lg rounded-md text-white text-center cursor-pointer flex-1 flex items-center justify-center">Cancel</span>
+                        <button type="submit"
+                            class=" w-[100px] max-sm:w-full bg-blu hover:bg-blue-400 py-2 px-3 text-lg rounded-md text-white flex-1">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="absolute bg-black opacity-60 w-[100vw] h-[100vh] z-20" id="bgBlack"></div>
+
+    </div>
+
     </div>
 @endsection
 
@@ -171,5 +294,32 @@
     const closeButton = document.getElementById("close-btn");
     closeButton.addEventListener("click", () => {
     // Add code here to close the modal or perform any other desired action
+    });
+
+    function editStudent(a,b,c,d,e,f,g,h,i,j,k) {
+    document.getElementById("editDiaglogBox").classList.toggle("hidden");
+
+
+    document.getElementById("a").value = a;
+    document.getElementById("b").value = b;
+    document.getElementById("c").value = c;
+    document.getElementById("d").value = d;
+    document.getElementById("e").value = e;
+    document.getElementById("f").value = f;
+    document.getElementById("g").value = g;
+    document.getElementById("h").value = h;
+    document.getElementById("i").value = i;
+    document.getElementById("j").value = j;
+    document.getElementById("k").value = k;
+    };
+
+    document.querySelector("#bgBlack").addEventListener("click", function () {
+
+    document.getElementById("editDiaglogBox").classList.toggle("hidden");
+    });
+
+    document.querySelector("#cancelBtn").addEventListener("click", function () {
+
+    document.getElementById("editDiaglogBox").classList.toggle("hidden");
     });
 @endsection
