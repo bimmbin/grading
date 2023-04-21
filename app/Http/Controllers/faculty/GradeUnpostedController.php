@@ -15,10 +15,13 @@ class GradeUnpostedController extends Controller
     public function index($id) {
 
         $loading = Loading::findOrFail($id); 
+
         $grades = Grade::whereRelation('loading', 'id', $id)->get();
 
+        // $hasPosts = Loading::has('requestchange')->exists();
 
-       
+
+    //    dd($loading->requestchange()->exists());
         $key = env('APP_KEY');
         $decryptedgrades = [];
         foreach ($grades as $data) {

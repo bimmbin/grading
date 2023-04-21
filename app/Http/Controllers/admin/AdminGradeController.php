@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\Loading;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,6 +30,31 @@ class AdminGradeController extends Controller
         // dd($faculties);
         return view('admin.submittedgrades', [
             'faculties' => $faculties
+        ]);
+    }
+
+    public function requestchange() {
+
+        $faculties = Profile::has('loading.requestchange')->distinct()->get();
+
+        // dd($faculties);
+        // dd($faculties);
+        return view('admin.requestchange', [
+            'faculties' => $faculties
+        ]);
+    }
+    
+    public function requestList($id) {
+
+        $profile = Profile::findOrFail($id);
+
+        $loading = Loading::has('requestchange')->get();
+
+        // dd($loading);
+        // dd($faculties);
+        return view('admin.request-list', [
+            'profile' => $profile,
+            'loadings' => $loading
         ]);
     }
 }

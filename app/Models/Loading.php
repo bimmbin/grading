@@ -31,4 +31,7 @@ class Loading extends Model
     public function grade() {
         return $this->hasOne(Grade::class);
     }
+    public function requestchange() {
+        return $this->hasOne(Requestchange::class);
+    }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\SubjectController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AdminGradeController;
+use App\Http\Controllers\admin\AdminRequestController;
 use App\Http\Controllers\faculty\GradeViewController;
 use App\Http\Controllers\faculty\GradePostedController;
 use App\Http\Controllers\faculty\FacultyGradeController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\faculty\FacultyLoadsController;
 use App\Http\Controllers\student\StudentGradeController;
 use App\Http\Controllers\admin\RegisterStudentController;
 use App\Http\Controllers\faculty\GradeUnpostedController;
+use App\Http\Controllers\faculty\RemarksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +81,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //grades
     Route::get('/admin/grade', [AdminGradeController::class, 'grade'])->name('admin.grade');
     Route::get('/admin/grade/submitted', [AdminGradeController::class, 'submittedGrades'])->name('admin.submittedgrade');
+    Route::get('/admin/grade/changerequest', [AdminGradeController::class, 'requestchange'])->name('admin.request');
+    Route::get('/admin/grade/changerequest-lists/{id}', [AdminGradeController::class, 'requestList'])->name('admin.request.list');
+   
+    //change request approve
+    Route::post('/admin/grade/changerequest/approve', [AdminRequestController::class, 'store'])->name('admin.request.approve');
+    //change request deny
+    Route::post('/admin/grade/changerequest/deny', [AdminRequestController::class, 'deny'])->name('admin.request.deny');
    
 });
 
@@ -91,7 +100,9 @@ Route::middleware(['auth', 'faculty'])->group(function () {
     //generate grade
     Route::post('/admin/generate-grade', [FacultyGradeController::class, 'store'])->name('faculty.generategrade');
     
-   
+    //Change of request grades
+    Route::post('/admin/request-change-grade', [RemarksController::class, 'store'])->name('faculty.requestchange');
+    
 });
 
 Route::middleware(['auth', 'adminfaculty'])->group(function () {

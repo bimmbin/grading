@@ -28,9 +28,10 @@
                         </button>
 
                     </div>
-                    
+
                     <form action="{{ route('faculty.grade-posted', $loading->id) }}" id="report-popup"
-                        class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75 hidden" method="post">
+                        class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75 hidden"
+                        method="post">
                         @csrf
                         <div class="bg-white rounded-lg p-8 w-[500px] h-[250px] relative">
                             <h1 class="font-bold text-blu pb-10 text-center"
@@ -38,27 +39,55 @@
                                 Are you sure do you want to submit this sheet?
                             </h1>
                             <div class="flex gap-7 items-center justify-center">
-        
+
                                 <span id="close-btn"
                                     class="text-center text-sm cursor-pointer bg-gray-400 hover:bg-gray-300 text-white font-bold py-3 px-7 rounded">
                                     Close
                                 </span>
-        
-        
+
+
                                 <button
                                     class="text-center text-sm cursor-pointer bg-blue-700 hover:bg-blue-500 text-white font-bold py-3 px-7 rounded">
                                     Yes
                                 </button>
-        
-        
+
+
                             </div>
                         </div>
                     </form>
                 @endif
+                @if ($loading->status == 'posted' && !$loading->requestchange()->exists())
+                    <button id="generate-report-btn"
+                        class="bg-blu px-5 text-white text-sm h-[40px] rounded-lg hover:opacity-70">
+                        Change of Grade Request
+                    </button>
+
+                    <div id="report-popup"
+                        class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75 hidden">
+                        <form action="{{ route('faculty.requestchange') }}" method="post" class="bg-white rounded-lg p-8 w-[600px] h-fit relative">
+                            @csrf
+                            <h1 class="font-bold text-blu pb-10 text-center"
+                                style="font-size: clamp(1.5rem, 0.375rem + 1.5625vw, 2.25rem);">
+                                Remarks
+                            </h1>
+                            <textarea class="border border-gray-400 w-full py-2 px-3" name="remarks" id="" cols="30" rows="10"
+                                placeholder="input your remarks here..."></textarea>
+                            <input type="hidden" name="loading_id" value="{{ $loading->id }}">
+                            <div class="flex flex-col gap-3 items-center justify-between">
+                                <div >
+                                    <button
+                                        class="text-center cursor-pointer bg-blu mt-5 text-white hover:bg-gray-400 text-gray-800 font-bold py-2 px-7 rounded">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                @endif
             @endif
 
 
-          
+
         </div>
 
         <input
