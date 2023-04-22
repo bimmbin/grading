@@ -259,7 +259,7 @@
         <div class="w-screen h-screen overflow-y-scroll mx-5 pb-10 max-xl:h-screen max-lg:h-screen">
             <!-- header -->
             <header
-                class="flex w-[100%] max-w-[1920px] bg-thebg items-center justify-between py-[50px] px-[70px] max-2xl:px-[0px]">
+                class="flex w-[100%] max-w-[1920px] bg-thebg items-center justify-between px-[70px] max-2xl:px-[0px] md:py-[50px]">
                 <div class="burger-menu hidden max-md:block">
                     <input type="checkbox" id="burger-toggle" />
                     <label for="burger-toggle">
@@ -359,17 +359,18 @@
                     </div>
                 </div>
 
-                <a href="grades.html"
-                    class="text-[28px] font-bold text-blu max-lg:text-[20px] max-2xl:text-[23px] max-sm:text-[20px]">
-                    Grades
-                </a>
 
-                <div class="flex items-center gap-5">
-                    <img class="w-[57px] h-[57px] max-lg:w-[40px] max-lg:h-[40px] max-2xl:w-[45px] max-2xl:h-[45px] max-sm:h-[35px] max-sm:w-[35px]"
-                        src="/asset/user-profile.png" alt="user-profile" />
 
-                    <div class="flex gap-3 items-center">
-                        <!-- online status -->
+              
+
+                <div class="flex items-center gap-5 justify-between w-full">
+
+                    <a href="{{ route('dashboard') }}" class="flex-col flex ml-5 items-center my-[30px] md:hidden">
+                        <img class="w-[89px] h-[89px]" src="/asset/chcc-vector-logo.png" alt="logo" />
+    
+                    </a>
+                    <!-- online status -->
+                    <div class="flex items-center justify-center gap-2">
                         <div class="w-5 h-5 bg-lightgreeny rounded-full max-lg:w-4 max-lg:h-4 max-sm:w-4 max-sm:h-4">
                         </div>
                         @auth
@@ -378,31 +379,31 @@
                             </span>
 
                         @endauth
-
-                        <ul class="flex items-center max-md:hidden text-red-500">
-                            @auth
-                                <li>
-                                    <a href="" class="p-3">{{ auth()->user()->username }}</a>
-                                </li>
-                                <li>
-                                    <form action="{{ route('logout') }}" method="post" class="p-3 inline">
-                                        @csrf
-                                        <button type="submit">Logout</button>
-                                    </form>
-                                </li>
-                            @endauth
-
-                            @guest
-                                <li>
-                                    <a href="{{ route('login') }}" class="p-3">Login</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('register') }}" class="p-3">Register</a>
-                                </li>
-                            @endguest
-                        </ul>
                     </div>
+                    <ul class="flex items-center max-md:hidden text-red-500">
+                        @auth
+                            <li>
+                                <a href="" class="p-3">{{ auth()->user()->username }}</a>
+                            </li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="post" class="p-3 inline">
+                                    @csrf
+                                    <button type="submit">Logout</button>
+                                </form>
+                            </li>
+                        @endauth
+
+                        @guest
+                            <li>
+                                <a href="{{ route('login') }}" class="p-3">Login</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('register') }}" class="p-3">Register</a>
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
+
             </header>
 
 

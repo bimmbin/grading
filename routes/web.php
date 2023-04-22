@@ -12,6 +12,7 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\AdminGradeController;
 use App\Http\Controllers\admin\AdminRequestController;
+use App\Http\Controllers\admin\EditFacultyController;
 use App\Http\Controllers\faculty\GradeViewController;
 use App\Http\Controllers\faculty\GradePostedController;
 use App\Http\Controllers\faculty\FacultyGradeController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\admin\RegisterStudentController;
 use App\Http\Controllers\faculty\EditGradeController;
 use App\Http\Controllers\faculty\GradeUnpostedController;
 use App\Http\Controllers\faculty\RemarksController;
+use App\Http\Controllers\pdf\GradePdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +92,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //change request deny
     Route::post('/admin/grade/changerequest/deny', [AdminRequestController::class, 'deny'])->name('admin.request.deny');
    
+    //edit faculty
+    Route::post('/admin/faculty/edit-info', [EditFacultyController::class, 'store'])->name('admin.editfaculty');
+   
 });
 
 
@@ -128,5 +133,9 @@ Route::middleware(['auth', 'student'])->group(function () {
     //grade
     Route::get('/student/grades', [StudentGradeController::class, 'index'])->name('student.grade');
     
-
+    //pdf view
+    Route::get('/student/pdf', [GradePdfController::class, 'index'])->name('student.pdf');
+    
+    Route::get('/student/pdf-download', [GradePdfController::class, 'exportToPDF'])->name('student.pdf.download');
+    
 });

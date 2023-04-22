@@ -20,23 +20,24 @@
                 <div class="flex flex-col gap-4">
                     <label class="font-semibold" for="lastname">Last Name</label>
                     <input class="rounded border-blu border py-2 px-3" type="text" id="lastname" name="lastname"
-                        placeholder="Enter your Last name" />
+                        placeholder="Enter your Last name" pattern="[A-Za-z -]+" required>
 
                     <label class="font-semibold" for="firstname">First Name</label>
                     <input class="rounded border-blu border py-2 px-3" type="text" id="firstname" name="firstname"
-                        placeholder="Enter your First name" />
+                        placeholder="Enter your First name" pattern="[A-Za-z -]+" required>
 
                     <label class="font-semibold" for="middlename">Middle Initial</label>
-                    <input class="rounded border-blu border py-2 px-3" maxlength="1" type="text" id="middlename" name="middlename"
-                        placeholder="Enter your Middle Initial" />
+                    <input class="rounded border-blu border py-2 px-3" maxlength="1" type="text" id="middlename"
+                        name="middlename" placeholder="Enter your Middle Initial" pattern="[A-Za-z -]+" required>
 
                     <label class="font-semibold" for="employeeno">Employee Number</label>
                     <input class="rounded border-blu border py-2 px-3" type="number" id="employeeno" name="employeeno"
-                        placeholder="Enter your Last name" />
+                        placeholder="Enter your employee no.">
+
 
                     <label class="font-semibold" for="department">Department</label>
                     <select class="rounded border-blu border py-2 px-3" type="text" id="department" name="department"
-                        placeholder="Enter your Last name"> 
+                        placeholder="Enter your Last name">
                         <option value="BSCS">BSCS</option>
                         <option value="BSHM">BSHM</option>
                         <option value="BSC">BSC</option>
@@ -88,12 +89,92 @@
                         <td class="pb-4 pt-2">{{ $faculty->department }}</td>
                         <td class="pb-4 pt-2">
                             <a class="text-blu" href="{{ route('admin.faculty.loads', $faculty->id) }}">View loads</a>
+
+                            <button class="ml-3 underline text-blu"
+                                onclick="editStudent(
+
+                                        '{{ $faculty->employeeno }}',
+                                        '{{ $faculty->lastname }}',
+                                        '{{ $faculty->firstname }}',
+                                        '{{ $faculty->middlename }}',
+                                        '{{ $faculty->department }}',
+                                        '{{ $faculty->id }}',
+
+                                        )">
+                                Edit
+                            </button>
                         </td>
                     </tr>
                 @endforeach
 
             </tbody>
         </table>
+
+        <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
+            id="editDiaglogBox">
+            <div class="absolute z-50 bg-white py-5 px-5 rounded-lg ">
+                
+                <form action="{{ route('admin.editfaculty') }}" method="post" class="flex justify-center items-center">
+                    @csrf
+
+                    <div class="flex max-sm:flex-col items-center">
+                        <div
+                            class="flex w-[53rem] max-sm:w-full  flex-wrap gap-2 justify-center items-center max-sm:flex-col">
+
+
+                            <div class="flex flex-col max-sm:w-full">
+                                <label for="a" class="font-semibold text-sm">Employee No.</label>
+                                <input type="text"
+                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    id="a" placeholder="Employee No." name="employeeno">
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label for="b" class="font-semibold text-sm">Lastname</label>
+                                <input type="text"
+                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    id="b" placeholder="Lastname" name="lastname">
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label for="c" class="font-semibold text-sm">First Name</label>
+                                <input type="text"
+                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    id="c" placeholder="First Name" name="firstname">
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label for="d" class="font-semibold text-sm">Middle Initial</label>
+                                <input type="text"
+                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    id="d" placeholder="Middle Initial" name="middlename">
+                            </div>
+
+
+                            <div class="flex flex-col">
+                                <label for="e" class="font-semibold text-sm">Department</label>
+
+                                <input type="text"
+                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    id="e" placeholder="Department" name="department">
+                            </div>
+
+                            <input type="hidden" id="f" name="id">
+                        </div>
+
+                        <div class="flex flex-col gap-2  max-sm:w-full  max-sm:mt-2">
+                            <span type="submit" id="cancelBtn"
+                                class=" w-[100px] max-sm:w-full bg-gray-400 hover:bg-gray-500 py-2 px-3 text-lg rounded-md text-white text-center cursor-pointer flex-1 flex items-center justify-center">Cancel</span>
+                            <button type="submit"
+                                class=" w-[100px] max-sm:w-full bg-blu hover:bg-blue-400 py-2 px-3 text-lg rounded-md text-white flex-1">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="absolute bg-black opacity-60 w-[100vw] h-[100vh] z-20" id="bgBlack"></div>
+
+        </div>
+
     </div>
 @endsection
 
@@ -122,5 +203,27 @@
     const cancelBtn = document.getElementById("cancel-btn");
     cancelBtn.addEventListener("click", () => {
     createAccountPopup.classList.add("hidden");
+    });
+
+    function editStudent(a,b,c,d,e,f) {
+    document.getElementById("editDiaglogBox").classList.toggle("hidden");
+
+
+    document.getElementById("a").value = a;
+    document.getElementById("b").value = b;
+    document.getElementById("c").value = c;
+    document.getElementById("d").value = d;
+    document.getElementById("e").value = e;
+    document.getElementById("f").value = f;
+    };
+
+    document.querySelector("#bgBlack").addEventListener("click", function () {
+
+    document.getElementById("editDiaglogBox").classList.toggle("hidden");
+    });
+
+    document.querySelector("#cancelBtn").addEventListener("click", function () {
+
+    document.getElementById("editDiaglogBox").classList.toggle("hidden");
     });
 @endsection

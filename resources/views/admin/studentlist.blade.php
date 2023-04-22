@@ -4,13 +4,13 @@
 
 @section('content')
     <div class="flex flex-col w-[100%] my-5 gap-3 md:items-start whitespace-nowrap">
-        <div class="flex">
-            <button id="create-account-btn" class="bg-blu px-7 py-3 text-center text-white rounded hover:bg-opacity-70">
+        <div class="flex items-center">
+            <button class="cursor-default px-7 py-3 text-center rounded lg:text-2xl font-semibold">
                 Create Account
             </button>
 
 
-            <div class="flex w-full p-10 flex-col gap-5 lg:flex-row overflow-x-hidden">
+            <div class="flex w-full px-10 flex-col gap-5 lg:flex-row overflow-x-hidden">
 
                 <form action="{{ route('previewTable') }}" method="post" enctype="multipart/form-data">
                     @csrf

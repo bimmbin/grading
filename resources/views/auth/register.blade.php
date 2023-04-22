@@ -30,8 +30,6 @@
                 <input type="password" name="password" id="password" placeholder="Choose a password"
                     class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('password') border-red-500 @enderror"
                     value="">
-
-
             </div>
 
             <div class="mb-4">
