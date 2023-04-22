@@ -10,10 +10,8 @@
 
         <p class="mb-5 text-gray-500">1st Sem S.Y 2022 - 2023</p>
 
-        <input
-            class="py-3 w-[100%] border-2 border-blu text-sm md:text-base lg:text-lg font-medium rounded-lg text-left px-10"
-            type="text" id="searchInput" class="border-2 border-gray-400 p-2 rounded-md"
-            placeholder="Search who you looking for.." />
+        <input class="py-1 w-[100%] border-2 border-blu text-sm md:text-base lg:text-md rounded text-left px-10 self-end sm:w-[30%]" 
+                   type="text" id="searchInput" placeholder="Search">
     </div>
 
     <div class="bg-white rounded-xl overflow-x-auto pb-5">

@@ -32,7 +32,7 @@
             <div class="flex items-center gap-2 self-start">
                 <div class="w-5 h-5 bg-red-800 rounded-full max-lg:w-4 max-lg:h-4 max-sm:w-4 max-sm:h-4"></div>
                 <h2>Posted</h2>
-                <a href="{{ route('student.pdf.download') }}">download</a>
+                {{-- <a href="{{ route('student.pdf.download') }}">download</a> --}}
             </div>
 
             <table class="table-auto text-center w-[1920px] bg-white text-lg xl:w-full">

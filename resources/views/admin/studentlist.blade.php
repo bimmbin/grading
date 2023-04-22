@@ -4,19 +4,19 @@
 
 @section('content')
     <div class="flex flex-col w-[100%] my-5 gap-3 md:items-start whitespace-nowrap">
-        <div class="flex items-center">
+        <div class="flex items-center w-full justify-between max-lg:flex-col">
             <button class="cursor-default px-7 py-3 text-center rounded lg:text-2xl font-semibold">
                 Create Account
             </button>
 
 
-            <div class="flex w-full px-10 flex-col gap-5 lg:flex-row overflow-x-hidden">
+            <div class="flex w-full flex-col lg:flex-row">
 
-                <form action="{{ route('previewTable') }}" method="post" enctype="multipart/form-data">
+                <form class="w-full flex flex-col gap-2 justify-between sm:flex-row" action="{{ route('previewTable') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input class="border-none" style="font-size: clamp(1.1875rem, 0.9375rem + 0.625vw, 1.6875rem);"
                         type="file" name="file">
-                    <button type="submit" class="">Upload</button>
+                    <button type="submit" class="px-3 py-1 bg-blu rounded text-white">Upload</button>
                 </form>
 
             </div>
@@ -59,10 +59,9 @@
             </div>
         </div>
 
-        <input
-            class="py-3 w-[100%] border-2 border-blu text-sm md:text-base lg:text-lg font-medium rounded-lg text-left px-10"
-            type="text" id="searchInput" class="border-2 border-gray-400 p-2 rounded-md"
-            placeholder="Search who you looking for.." />
+            <input class="py-1 w-[100%] border-2 border-blu text-sm md:text-base lg:text-md rounded text-left px-10 self-end sm:w-[30%]" 
+                   type="text" id="searchInput" placeholder="Search">
+          
     </div>
 
     <div class="bg-white rounded-xl overflow-x-auto pb-5">
