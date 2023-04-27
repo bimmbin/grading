@@ -27,7 +27,7 @@
                         placeholder="Enter your First name" pattern="[A-Za-z -]+" required>
 
                     <label class="font-semibold" for="middlename">Middle Initial</label>
-                    <input class="rounded border-blu border py-2 px-3" maxlength="1" type="text" id="middlename"
+                    <input class="rounded border-blu border py-2 px-3 uppercase" maxlength="1" type="text" id="middlename"
                         name="middlename" placeholder="Enter your Middle Initial" pattern="[A-Za-z -]+" required>
 
                     <label class="font-semibold" for="employeeno">Employee Number</label>
@@ -58,7 +58,7 @@
             </form>
         </div>
 
-        <input class="py-1 w-[100%] border-2 border-blu text-sm md:text-base lg:text-md rounded text-left px-10 self-end sm:w-[30%]" 
+        <input class="py-1 w-[100%] border border-blu text-sm md:text-base rounded text-left px-5 self-end sm:w-[30%]" 
                    type="text" id="searchInput" placeholder="Search">
     </div>
 

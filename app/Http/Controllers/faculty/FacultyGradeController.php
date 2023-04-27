@@ -87,9 +87,9 @@ class FacultyGradeController extends Controller
                 $iterate = 0;
                 foreach ($students->rows($i, 0) as $student) {
                     //check if student number is empty, then proceeds to next loop
-                    if (empty($student[1])) {
-                        continue;
-                    }
+                    // if (empty($student[1])) {
+                    //     continue;
+                    // }
 
                     if ($iterate != 0) {
                    

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Change of Request</title>
+    <title>CHCC Automated Grading System</title>
     <link rel="icon" type="image/x-icon" href="/asset/chcc-vector-logo.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -130,7 +130,7 @@
     </style>
 </head>
 
-<body class="font-pops">
+<body class="font-pops max-w-[1920px] mx-auto">
     <section class="flex bg-thebg">
         <!-- leftcolumn -->
         @auth
@@ -191,19 +191,7 @@
                                 href="{{ route('student.grade') }}">Grades</a>
                         </li>
 
-                        <li
-                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
-                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-setting.png"
-                                alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Settings</a>
-                        </li>
 
-                        <li
-                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
-                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-about.png"
-                                alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">About</a>
-                        </li>
                     @endif
 
                     @if (Auth::user()->role === 'faculty')
@@ -223,19 +211,7 @@
                                 href="{{ route('faculty.loads-grades', Auth::user()->profile->id) }}">Grades</a>
                         </li>
 
-                        <li
-                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
-                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-setting.png"
-                                alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">Settings</a>
-                        </li>
-
-                        <li
-                            class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
-                            <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-about.png"
-                                alt="" />
-                            <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]" href="#">About</a>
-                        </li>
+                       
                     @endif
                     {{-- <li
                         class="w-[224px] flex gap-3 border-b-2 gap-5 items-center pb-4 hover:border-blu cursor-pointer hover:text-blu hover:font-medium max-xl:pl-6 mt-5">
@@ -335,13 +311,13 @@
                                 @endif
                             @endauth
                             @auth
-                                <li>
-                                    <a href="" class="p-3">{{ auth()->user()->username }}</a>
+                                <li class="absolute bottom-14">
+                                    <a href="" class="p-3 text-blu">Status: {{ auth()->user()->username }}</a>
                                 </li>
-                                <li>
+                                <li class="absolute bottom-6">
                                     <form action="{{ route('logout') }}" method="post" class="p-3 inline">
                                         @csrf
-                                        <button type="submit">Logout</button>
+                                        <button class="bg-red-500 px-2 py-1 text-sm rounded text-white hover:bg-red-700" type="submit">Logout</button>
                                     </form>
                                 </li>
                             @endauth
@@ -365,32 +341,25 @@
 
                 <div class="flex items-center gap-5 justify-between w-full">
 
-                    <a href="{{ route('dashboard') }}" class="flex-col flex ml-5 items-center my-[30px] md:hidden">
+                    <a href="{{ route('dashboard') }}" class="w-full flex-col flex items-center justify-center my-[30px] md:hidden">
                         <img class="w-[89px] h-[89px]" src="/asset/chcc-vector-logo.png" alt="logo" />
     
                     </a>
                     <!-- online status -->
-                    <div class="flex items-center justify-center gap-2">
-                        <div class="w-5 h-5 bg-lightgreeny rounded-full max-lg:w-4 max-lg:h-4 max-sm:w-4 max-sm:h-4">
-                        </div>
+                   
+                    <ul class="w-full flex items-center max-md:hidden">
                         @auth
-                            <span
-                                class="text-blu text-[20px] font-medium max-lg:text-[16px] max-2xl:text-[18px] max-sm:text-[16px]">Status:{{ auth()->user()->role }}
-                            </span>
-
-                        @endauth
-                    </div>
-                    <ul class="flex items-center max-md:hidden text-red-500">
-                        @auth
+                        <div class="flex justify-between w-full">
                             <li>
-                                <a href="" class="p-3">{{ auth()->user()->username }}</a>
+                                <a href="" class="p-3 text-blu">Status: {{ auth()->user()->username }}</a>
                             </li>
                             <li>
                                 <form action="{{ route('logout') }}" method="post" class="p-3 inline">
                                     @csrf
-                                    <button type="submit">Logout</button>
+                                    <button class="bg-red-500 px-2 py-1 text-sm rounded text-white hover:bg-red-700" type="submit">Logout</button>
                                 </form>
                             </li>
+                        </div>
                         @endauth
 
                         @guest
