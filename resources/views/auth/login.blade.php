@@ -62,7 +62,7 @@
                 <button class="text-white bg-blu mt-[-5px] h-[42px] rounded hover:opacity-70 text-[12px] sm:text-[13px] xl:text-[14px]">Login</button>
 
                 <div class="flex gap-2 text-[12px] justify-center sm:text-[13px] xl:w-[352px] xl:justify-start">
-                    <h3 class="font-medium">Not registered yet?</h3> <a class="font-medium text-blu hover:opacity-70" href="{{ route('register') }}">Register</a>
+                    {{-- <h3 class="font-medium">Not registered yet?</h3> <a class="font-medium text-blu hover:opacity-70" href="{{ route('register') }}">Register</a> --}}
                 </div>
 
                 
