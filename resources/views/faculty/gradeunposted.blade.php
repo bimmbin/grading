@@ -104,7 +104,7 @@
                 <th class="pt-8 pb-8">No.</th>
                 <th class="pt-8 pb-8">Last name</th>
                 <th class="pt-8 pb-8">First name</th>
-                <th class="pt-8 pb-8">M.I</th>
+                <th class="pt-8 pb-8">Middle Name</th>
                 <th class="pt-8 pb-8">Section</th>
                 <th class="pt-8 pb-8">Prelim</th>
                 <th class="pt-8 pb-8">Midterm</th>
