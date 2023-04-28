@@ -65,7 +65,6 @@
                     {{-- <h3 class="font-medium">Not registered yet?</h3> <a class="font-medium text-blu hover:opacity-70" href="{{ route('register') }}">Register</a> --}}
                 </div>
 
-                
             </form>
             
         </div>

@@ -27,8 +27,9 @@
                         placeholder="Enter your First name" pattern="[A-Za-z -]+" required>
 
                     <label class="font-semibold" for="middlename">Middle Initial</label>
-                    <input class="rounded border-blu border py-2 px-3 uppercase" maxlength="1" type="text" id="middlename"
-                        name="middlename" placeholder="Enter your Middle Initial" pattern="[A-Za-z -]+" required>
+                    <input class="rounded border-blu border py-2 px-3 uppercase" maxlength="1" type="text"
+                        id="middlename" name="middlename" placeholder="Enter your Middle Initial" pattern="[A-Za-z -]+"
+                        required>
 
                     <label class="font-semibold" for="employeeno">Employee Number</label>
                     <input class="rounded border-blu border py-2 px-3" type="number" id="employeeno" name="employeeno"
@@ -58,8 +59,8 @@
             </form>
         </div>
 
-        <input class="py-1 w-[100%] border border-blu text-sm md:text-base rounded text-left px-5 self-end sm:w-[30%]" 
-                   type="text" id="searchInput" placeholder="Search">
+        <input class="py-1 w-[100%] border border-blu text-sm md:text-base rounded text-left px-5 self-end sm:w-[30%]"
+            type="text" id="searchInput" placeholder="Search">
     </div>
 
     <div class="bg-white rounded-xl overflow-x-auto pb-5">
@@ -111,7 +112,7 @@
         <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
             id="editDiaglogBox">
             <div class="absolute z-50 bg-white py-5 px-5 rounded-lg ">
-                
+
                 <form action="{{ route('admin.editfaculty') }}" method="post" class="flex justify-center items-center">
                     @csrf
 
@@ -122,7 +123,7 @@
 
                             <div class="flex flex-col max-sm:w-full">
                                 <label for="a" class="font-semibold text-sm">Employee No.</label>
-                                <input type="text"
+                                <input type="number"
                                     class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
                                     id="a" placeholder="Employee No." name="employeeno">
                             </div>
@@ -131,30 +132,36 @@
                                 <label for="b" class="font-semibold text-sm">Lastname</label>
                                 <input type="text"
                                     class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                    id="b" placeholder="Lastname" name="lastname">
+                                    id="b" placeholder="Lastname" name="lastname" pattern="[A-Za-z -]+" required>
                             </div>
 
                             <div class="flex flex-col">
                                 <label for="c" class="font-semibold text-sm">First Name</label>
                                 <input type="text"
                                     class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                    id="c" placeholder="First Name" name="firstname">
+                                    id="c" placeholder="First Name" name="firstname" pattern="[A-Za-z -]+" required>
                             </div>
 
                             <div class="flex flex-col">
                                 <label for="d" class="font-semibold text-sm">Middle Initial</label>
                                 <input type="text"
                                     class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
-                                    id="d" placeholder="Middle Initial" name="middlename">
+                                    id="d" placeholder="Middle Initial" name="middlename" maxlength="1" pattern="[A-Za-z -]+" required>
                             </div>
 
 
                             <div class="flex flex-col">
                                 <label for="e" class="font-semibold text-sm">Department</label>
 
-                                <input type="text"
+                                <select type="text"
                                     class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
                                     id="e" placeholder="Department" name="department">
+                                    <option value="BSCS">BSCS</option>
+                                    <option value="BSHM">BSHM</option>
+                                    <option value="BSC">BSC</option>
+                                    <option value="BEED">BEED</option>
+                                    <option value="BSED">BSED</option>
+                                </select>
                             </div>
 
                             <input type="hidden" id="f" name="id">
