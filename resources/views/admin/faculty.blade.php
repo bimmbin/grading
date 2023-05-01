@@ -111,50 +111,50 @@
 
         <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
             id="editDiaglogBox">
-            <div class="absolute z-50 bg-white py-5 px-5 rounded-lg ">
+            <div class="absolute z-50 bg-white py-5 px-5 rounded-lg max-w-[500px]">
 
                 <form action="{{ route('admin.editfaculty') }}" method="post" class="flex justify-center items-center">
                     @csrf
 
-                    <div class="flex max-sm:flex-col items-center">
+                    <div class="flex flex-col items-center">
                         <div
-                            class="flex w-[53rem] max-sm:w-full  flex-wrap gap-2 justify-center items-center max-sm:flex-col">
+                            class="flex w-full flex-col h-fit justify-center items-center">
 
 
-                            <div class="flex flex-col max-sm:w-full">
+                            <div class="flex flex-col w-full">
                                 <label for="a" class="font-semibold text-sm">Employee No.</label>
                                 <input type="number"
-                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    class="w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
                                     id="a" placeholder="Employee No." name="employeeno">
                             </div>
 
-                            <div class="flex flex-col">
+                            <div class="flex flex-col w-full">
                                 <label for="b" class="font-semibold text-sm">Lastname</label>
                                 <input type="text"
-                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    class="w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
                                     id="b" placeholder="Lastname" name="lastname" pattern="[A-Za-z -]+" required>
                             </div>
 
-                            <div class="flex flex-col">
+                            <div class="flex flex-col w-full">
                                 <label for="c" class="font-semibold text-sm">First Name</label>
                                 <input type="text"
-                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    class="w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
                                     id="c" placeholder="First Name" name="firstname" pattern="[A-Za-z -]+" required>
                             </div>
 
-                            <div class="flex flex-col">
+                            <div class="flex flex-col w-full">
                                 <label for="d" class="font-semibold text-sm">Middle Initial</label>
                                 <input type="text"
-                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    class="w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
                                     id="d" placeholder="Middle Initial" name="middlename" maxlength="1" pattern="[A-Za-z -]+" required>
                             </div>
 
 
-                            <div class="flex flex-col">
+                            <div class="flex flex-col w-full">
                                 <label for="e" class="font-semibold text-sm">Department</label>
 
                                 <select type="text"
-                                    class="w-[150px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
+                                    class="w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
                                     id="e" placeholder="Department" name="department">
                                     <option value="BSCS">BSCS</option>
                                     <option value="BSHM">BSHM</option>
@@ -167,7 +167,7 @@
                             <input type="hidden" id="f" name="id">
                         </div>
 
-                        <div class="flex flex-col gap-2  max-sm:w-full  max-sm:mt-2">
+                        <div class="flex flex-col gap-2 mt-2">
                             <span type="submit" id="cancelBtn"
                                 class=" w-[100px] max-sm:w-full bg-gray-400 hover:bg-gray-500 py-2 px-3 text-lg rounded-md text-white text-center cursor-pointer flex-1 flex items-center justify-center">Cancel</span>
                             <button type="submit"

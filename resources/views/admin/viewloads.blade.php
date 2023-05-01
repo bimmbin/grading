@@ -97,10 +97,8 @@
             </form>
         </div>
 
-        <input
-            class="py-3 w-[100%] border-2 border-blu text-sm md:text-base lg:text-lg font-medium rounded-lg text-left px-10"
-            type="text" id="searchInput" class="border-2 border-gray-400 p-2 rounded-md"
-            placeholder="Search who you looking for.." />
+        <input class="py-1 w-[100%] border border-blu text-sm md:text-base rounded text-left px-5 self-end sm:w-[30%]"
+            type="text" id="searchInput" placeholder="Search">
     </div>
 
     <div class="bg-white rounded-lg overflow-x-auto pb-5">

@@ -270,8 +270,7 @@
                                         <img class="w-[25px] h-[25px] max-md:w-5 max-md:h-5" src="/asset/icon-list.png"
                                             alt="" />
                                         <a class="text-[18px] max-xl:text-[16px] max-md:text-[14px]"
-                                            href="{{ route('admin.subject') }}">Faculty
-                                            List</a>
+                                            href="{{ route('admin.subject') }}">Subject & Section</a>
                                     </li>
 
                                     <li

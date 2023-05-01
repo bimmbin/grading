@@ -91,10 +91,8 @@
 
         </div>
 
-        <input
-            class="py-3 w-[100%] border-2 border-blu text-sm md:text-base lg:text-lg font-medium rounded-lg text-left px-10"
-            type="text" id="searchInput" class="border-2 border-gray-400 p-2 rounded-md"
-            placeholder="Search who you looking for.." />
+        <input class="py-1 w-[100%] border border-blu text-sm md:text-base rounded text-left px-5 self-end sm:w-[30%]"
+            type="text" id="searchInput" placeholder="Search">
 
     </div>
 
@@ -110,7 +108,7 @@
                 <th class="pt-8 pb-8">Midterm</th>
                 <th class="pt-8 pb-8">Final</th>
                 <th class="pt-8 pb-8">Final Average</th>
-                <th class="pt-8 pb-8">Equivalent</th>
+                {{-- <th class="pt-8 pb-8">Equivalent</th> --}}
                 <th class="pt-8 pb-8">Remarks</th>
                 @if ($loading->status !== 'posted')
                     <th class="pt-8 pb-8">Action</th>
@@ -121,6 +119,16 @@
         <tbody class="text-center font-regular text-sm md:text-base lg:text-lg font-medium">
 
             @foreach ($grades as $grade)
+                @php
+                    $average = ($decryptedgrades[$loop->index]['prelim'] + $decryptedgrades[$loop->index]['midterm'] + $decryptedgrades[$loop->index]['finals']) / 3;
+                    
+                    $remarks = '';
+                    if (intval($average) >= 0 && intval($average) <= 74) {
+                        $remarks = 'Failed';
+                    } elseif (intval($average) >= 75 && intval($average) <= 100) {
+                        $remarks = 'Passed';
+                    }
+                @endphp
                 <tr class="space-y-5 bg-white">
                     <td class="pb-4 pt-4">{{ $loop->iteration }}</td>
                     <td class="pb-4 pt-4">{{ $grade->profile->lastname }}</td>
@@ -130,9 +138,9 @@
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['prelim'] }}</td>
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['midterm'] }}</td>
                     <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['finals'] }}</td>
-                    <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['fg'] }}</td>
-                    <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['ng'] }}</td>
-                    <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['remarks'] }}</td>
+                    <td class="pb-4 pt-4">{{ intval($average) }}</td>
+                    {{-- <td class="pb-4 pt-4">{{ $decryptedgrades[$loop->index]['ng'] }}</td> --}}
+                    <td class="pb-4 pt-4">{{ $remarks }}</td>
 
                     @if ($loading->status !== 'posted')
                         <td class="pb-4 pt-4">
@@ -166,12 +174,12 @@
 
     <div class="absolute left-0 top-0 w-[100vw] h-[100vh] flex flex-col justify-center items-center hidden"
         id="editDiaglogBox">
-        <div class="absolute z-50 bg-white py-5 px-5 rounded-lg ">
+        <div class="absolute z-50 bg-white py-5 px-5 rounded-lg max-sm:mt-[12rem]">
 
             <form action="{{ route('faculty.editgrade') }}" method="post" class="flex justify-center items-center">
                 @csrf
 
-                <div class="flex max-sm:flex-col items-center">
+                <div class="flex max-sm:flex-col items-center w-full">
                     <div class="flex w-[53rem] max-sm:w-full  flex-wrap gap-2 justify-center items-center max-sm:flex-col">
 
                         <div class="flex flex-col max-sm:w-full">
@@ -219,7 +227,7 @@
                                 id="c" placeholder="Final" name="final">
                         </div>
 
-                        <div class="flex flex-col">
+                        <div class="flex flex-col hidden">
                             <label for="d" class="font-semibold text-sm">Final Average</label>
                             <input type="text"
                                 class="w-[120px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
@@ -227,7 +235,7 @@
                         </div>
 
 
-                        <div class="flex flex-col">
+                        <div class="flex flex-col hidden">
                             <label for="e" class="font-semibold text-sm">Equivalent</label>
 
                             <input type="text"
@@ -235,7 +243,7 @@
                                 id="e" placeholder="Equivalent" name="ng">
                         </div>
 
-                        <div class="flex flex-col">
+                        <div class="flex flex-col hidden">
                             <label for="f" class="font-semibold text-sm">Remarks</label>
                             <input type="text"
                                 class="w-[120px] max-sm:w-full border border-gray-300 py-2 px-3 text-lg rounded-md"
